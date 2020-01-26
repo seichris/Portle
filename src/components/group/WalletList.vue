@@ -66,7 +66,6 @@ export default {
 	#horizontal-list {
 		display: flex;
 		flex-direction: row;
-		flex: 0;
 		background: var(--brand-color);
 		color: var(--inverted-primary-text-color);
 		overflow-x: auto;
