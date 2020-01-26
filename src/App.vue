@@ -51,11 +51,6 @@ export default {
 		logo() {
 			return logo;
 		},
-		copyTooltipText() {
-			return this.copied
-				? 'Copied'
-				: 'Click to copy';
-		},
 	},
 	methods: {
 		showNavigation() {
