@@ -73,6 +73,25 @@ import ieth50smacoLogo from '../../public/img/sets/ieth50smaco.svg';
 import stbtcdaiLogo from '../../public/img/sets/stbtcdai.svg';
 import stethdaiLogo from '../../public/img/sets/stethdai.svg';
 
+import bbbLogo from '../../public/img/sets/social/bbb.png';
+import btcmoonLogo from '../../public/img/sets/social/btcmoon.png';
+import btcmoonxLogo from '../../public/img/sets/social/btcmoonx.png';
+import btcusdcrsiLogo from '../../public/img/sets/social/btcusdcrsi.png';
+import eth10kLogo from '../../public/img/sets/social/eth10k.png';
+import ethmoonxLogo from '../../public/img/sets/social/ethmoonx.png';
+import ethusdadl4Logo from '../../public/img/sets/social/ethusdadl4.png';
+import evolLogo from '../../public/img/sets/social/evol.png';
+import flexbtcLogo from '../../public/img/sets/social/flexbtc.png';
+import flexethbtcLogo from '../../public/img/sets/social/flexethbtc.png';
+import flexethLogo from '../../public/img/sets/social/flexeth.png';
+import greedLogo from '../../public/img/sets/social/greed.png';
+import ichiemaLogo from '../../public/img/sets/social/ichiema.png';
+import intbtcLogo from '../../public/img/sets/social/intbtc.png';
+import intethLogo from '../../public/img/sets/social/inteth.png';
+import longLogo from '../../public/img/sets/social/long.png';
+import ricLogo from '../../public/img/sets/social/ric.png';
+import tlsLogo from '../../public/img/sets/social/tls.png';
+
 class AssetLoader {
 	static loadAssetLogo(assetId) {
 		const logoMap = {
@@ -138,7 +157,7 @@ class AssetLoader {
 	}
 
 	static loadSetLogo(setId) {
-		const logoMap = {
+		const roboLogoMap = {
 			'btcdai': btcdaiLogo,
 			'btceth2575': btceth2575Logo,
 			'btceth5050': btceth5050Logo,
@@ -161,6 +180,27 @@ class AssetLoader {
 			'stbtcdai': stbtcdaiLogo,
 			'stethdai': stethdaiLogo,
 		};
+		const socialLogoMap = {
+			'bbb': bbbLogo,
+			'btcmoon': btcmoonLogo,
+			'btcmoonx': btcmoonxLogo,
+			'btcusdcrsi': btcusdcrsiLogo,
+			'eth10k': eth10kLogo,
+			'ethmoonx': ethmoonxLogo,
+			'ethusdadl4': ethusdadl4Logo,
+			'evol': evolLogo,
+			'flexbtc': flexbtcLogo,
+			'flexeth': flexethLogo,
+			'flexethbtc': flexethbtcLogo,
+			'greed': greedLogo,
+			'ichiema': ichiemaLogo,
+			'intbtc': intbtcLogo,
+			'inteth': intethLogo,
+			'long': longLogo,
+			'ric': ricLogo,
+			'tls': tlsLogo,
+		};
+		const logoMap = {...roboLogoMap, ...socialLogoMap};
 		return logoMap[setId];
 	}
 }
