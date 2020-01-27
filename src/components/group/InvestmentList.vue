@@ -12,15 +12,14 @@
 			/>
 		</div>
 		<div id="table">
-			<Row
+			<InvestmentRow
 				v-for="investment in sortedInvestments"
 				:key="investment.walletId + '-' + investment.protocolId + '-' + investment.id"
 				:wallet-id="investment.walletId"
 				:amount="investment.amount"
-				:ticker="formatInvestment(investment)"
-				:title="formatProtocol(investment.protocolId)"
+				:investment-id="investment.id"
+				:protocol-id="investment.protocolId"
 				:price="investment.price"
-				@click.native="openInvestment(investment)"
 			/>
 		</div>
 	</div>
@@ -30,16 +29,14 @@
 import BigNumber from 'bignumber.js';
 
 import InvestmentCard from '../card/InvestmentCard.vue';
-import Row from '../row/Row.vue';
+import InvestmentRow from '../row/InvestmentRow.vue';
 
 import Converter from '../../utils/converter.js';
-import Formatter from '../../utils/formatter.js';
-import Storage from '../../utils/storage.js';
 
 export default {
 	components: {
 		InvestmentCard,
-		Row,
+		InvestmentRow,
 	},
 	props: {
 		investments: {
@@ -95,25 +92,6 @@ export default {
 		},
 	},
 	methods: {
-		openInvestment(investment) {
-			const { walletId, protocolId, id } = investment;
-			const walletList = Storage.getWalletList();
-			const walletAddress = walletList[walletId].address;
-			const path = `/wallet/${walletAddress}/investment/${protocolId}/${id}`;
-			this.$router.push(path);
-		},
-		formatInvestment(investment) {
-			if (investment.protocolId == 'uniswap') {
-				return Formatter.formatUniswapPool(investment.id);
-			}
-			if (investment.protocolId == 'tokensets') {
-				return Formatter.formatSet(investment.id);
-			}
-			return investment.id;
-		},
-		formatProtocol(protocolId) {
-			return Formatter.formatProtocol(protocolId);
-		},
 		_getPrice(components) {
 			let price = new BigNumber(0);
 			for (const component of components) {

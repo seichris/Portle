@@ -11,15 +11,13 @@
 			/>
 		</div>
 		<div id="table">
-			<Row
+			<AssetRow
 				v-for="asset in sortedAssets"
 				:key="asset.walletId + '-' + asset.id"
 				:wallet-id="asset.walletId"
 				:amount="asset.amount"
-				:ticker="formatAsset(asset.id)"
-				:title="asset.name"
+				:asset-id="asset.id"
 				:price="asset.price"
-				@click.native="openAsset(asset)"
 			/>
 		</div>
 	</div>
@@ -29,18 +27,16 @@
 import BigNumber from 'bignumber.js';
 
 import AssetCard from '../card/AssetCard.vue';
-import Row from '../row/Row.vue';
+import AssetRow from '../row/AssetRow.vue';
 
 import Converter from '../../utils/converter.js';
-import Formatter from '../../utils/formatter.js';
-import Storage from '../../utils/storage.js';
 
 import tokens from '../../data/tokens.json';
 
 export default {
 	components: {
 		AssetCard,
-		Row,
+		AssetRow,
 	},
 	props: {
 		assets: {
@@ -86,18 +82,6 @@ export default {
 				return value.gt(1);
 			});
 			return meaningfulAssets;
-		},
-	},
-	methods: {
-		openAsset(asset) {
-			const { walletId, id } = asset;
-			const walletList = Storage.getWalletList();
-			const walletAddress = walletList[walletId].address;
-			const path = `/wallet/${walletAddress}/asset/${id}`;
-			this.$router.push(path);
-		},
-		formatAsset(assetId) {
-			return Formatter.formatAsset(assetId);
 		},
 	},
 };

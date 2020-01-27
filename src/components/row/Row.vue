@@ -106,6 +106,7 @@ export default {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	color: var(--primary-text-color);
 }
 
 .title {

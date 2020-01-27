@@ -13,16 +13,14 @@
 			/>
 		</div>
 		<div id="table">
-			<Row
+			<DepositRow
 				v-for="deposit in sortedDeposits"
 				:key="deposit.walletId + '-' + deposit.protocolId + '-' + deposit.assetId"
 				:wallet-id="deposit.walletId"
 				:amount="deposit.amount"
-				:ticker="formatAsset(deposit.assetId)"
-				:title="formatProtocol(deposit.protocolId)"
-				:rate="deposit.rate"
+				:asset-id="deposit.assetId"
+				:protocol-id="deposit.protocolId"
 				:price="deposit.price"
-				@click.native="openDeposit(deposit)"
 			/>
 		</div>
 	</div>
@@ -32,16 +30,14 @@
 import BigNumber from 'bignumber.js';
 
 import DepositCard from '../card/DepositCard.vue';
-import Row from '../row/Row.vue';
+import DepositRow from '../row/DepositRow.vue';
 
 import Converter from '../../utils/converter.js';
-import Formatter from '../../utils/formatter.js';
-import Storage from '../../utils/storage.js';
 
 export default {
 	components: {
 		DepositCard,
-		Row,
+		DepositRow,
 	},
 	props: {
 		deposits: {
@@ -92,21 +88,6 @@ export default {
 				return value.gt(0);
 			});
 			return meaningfulDeposits;
-		},
-	},
-	methods: {
-		openDeposit(deposit) {
-			const { walletId, protocolId, assetId } = deposit;
-			const walletList = Storage.getWalletList();
-			const walletAddress = walletList[walletId].address;
-			const path = `/wallet/${walletAddress}/deposit/${protocolId}/${assetId}`;
-			this.$router.push(path);
-		},
-		formatAsset(assetId) {
-			return Formatter.formatAsset(assetId);
-		},
-		formatProtocol(protocolId) {
-			return Formatter.formatProtocol(protocolId);
 		},
 	},
 };
