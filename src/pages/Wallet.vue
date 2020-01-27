@@ -198,15 +198,18 @@ export default {
 		},
 		async _loadPrices() {
 			const assetSet = {};
-			for (const asset of this.assets) {
+			const assets = Wallets.getAssets(this.wallets);
+			const deposits = Wallets.getDeposits(this.wallets);
+			const investments = Wallets.getInvestments(this.wallets);
+			for (const asset of assets) {
 				const { id } = asset;
 				assetSet[id] = true;
 			}
-			for (const deposit of this.deposits) {
+			for (const deposit of deposits) {
 				const { assetId } = deposit;
 				assetSet[assetId] = true;
 			}
-			for (const investment of this.investments) {
+			for (const investment of investments) {
 				const { protocolId, id } = investment;
 				const components = this.components[protocolId][id];
 				for (const component of components) {
@@ -214,10 +217,10 @@ export default {
 					assetSet[assetId] = true;
 				}
 			}
-			const assets = Object.keys(assetSet);
-			const prices = await Loader.loadPrices(assets);
-			for (let i = 0; i < assets.length; i++) {
-				const assetId = assets[i];
+			const assetIds = Object.keys(assetSet);
+			const prices = await Loader.loadPrices(assetIds);
+			for (let i = 0; i < assetIds.length; i++) {
+				const assetId = assetIds[i];
 				const price = prices[assetId];
 				Vue.set(this.prices, assetId, price);
 			}
