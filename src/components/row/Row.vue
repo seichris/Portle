@@ -78,7 +78,7 @@ export default {
 	display: flex;
 	margin: 0 0 0.5em -1.5em;
 	padding: 0;
-	background: white;
+	background: var(--background-color);
 	cursor: pointer;
 }
 
