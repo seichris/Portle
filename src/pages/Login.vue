@@ -8,13 +8,14 @@
 				Decentralized finance portfolio tracker
 			</h2>
 		</div>
-		<button
-			id="main"
-			class="primary big"
-			@click="openNewWallet()"
-		>
-			Get started
-		</button>
+		<router-link :to="'/wallet/new'">
+			<button
+				id="main"
+				class="primary big"
+			>
+				Get started
+			</button>
+		</router-link>
 		<div id="spacer" />
 	</div>
 </template>
@@ -29,12 +30,6 @@ export default {
 			this.$router.push('/');
 			return;
 		}
-	},
-	methods: {
-		openNewWallet() {
-			const path = '/wallet/new';
-			this.$router.push(path);
-		},
 	},
 };
 </script>

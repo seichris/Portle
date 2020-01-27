@@ -2,12 +2,12 @@
 	<div id="app">
 		<header v-if="showNavigation()">
 			<div class="header-part">
-				<h1
+				<router-link
 					id="app-title"
-					@click="openHomePage()"
+					:to="'/'"
 				>
 					Portle
-				</h1>
+				</router-link>
 			</div>
 		</header>
 		<main>
@@ -60,9 +60,6 @@ export default {
 			}
 			return true;
 		},
-		openHomePage() {
-			this.$router.push('/');
-		},
 	},
 };
 </script>
@@ -99,7 +96,6 @@ header {
 	padding: 0 1em;
 	display: flex;
 	justify-content: space-between;
-	color: var(--inverted-primary-text-color);
 	background: var(--brand-color);
 }
 
@@ -111,6 +107,7 @@ main {
 	margin: 0.25em 0;
 	font-size: 1.5em;
 	font-weight: normal;
+	color: var(--inverted-primary-text-color);
 	cursor: pointer;
 }
 
@@ -122,6 +119,10 @@ footer {
 h2 {
 	font-size: 1.25em;
 	margin: 1em 0 0.25em 0;
+}
+
+a {
+	text-decoration: none;
 }
 
 button {

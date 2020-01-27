@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<div
+		<router-link
 			id="total-value-wrapper"
+			:to="'/'"
 			:class="{ 'total-value-wrapper-selected': selectedWallet == -1 }"
-			@click="openPortfolio()"
 		>
 			<div id="total-value-label">
 				Net worth:
@@ -11,7 +11,7 @@
 			<div id="total-value">
 				{{ formatMoney(totalBalance) }}
 			</div>
-		</div>
+		</router-link>
 
 		<div id="wallet-list">
 			<div
@@ -25,9 +25,9 @@
 						:wallet-id="walletId"
 						class="wallet-icon"
 					/>
-					<div
+					<router-link
 						class="wallet-details"
-						@click="openWallet(wallet.address)"
+						:to="`/wallet/${wallet.address}`"
 					>
 						<div class="wallet-address">
 							{{ formatWalletAddress(wallet.address) }}
@@ -35,7 +35,7 @@
 						<div class="wallet-value">
 							{{ formatMoney(walletBalance(walletId)) }}
 						</div>
-					</div>
+					</router-link>
 				</div>
 				<div class="wallet-actions">
 					<img
@@ -47,9 +47,9 @@
 			</div>
 		</div>
 
-		<div
+		<router-link
 			id="add-wallet"
-			@click="openNewWallet()"
+			:to="'/wallet/new'"
 		>
 			<img
 				id="add-wallet-icon"
@@ -58,7 +58,7 @@
 			<div id="add-wallet-text">
 				Add wallet
 			</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 
@@ -152,18 +152,6 @@ export default {
 			Storage.removeWallet(wallet);
 			this.$router.go();
 		},
-		openPortfolio() {
-			const path = '/';
-			this.$router.push(path);
-		},
-		openWallet(address) {
-			const path = `/wallet/${address}`;
-			this.$router.push(path);
-		},
-		openNewWallet() {
-			const path = '/wallet/new';
-			this.$router.push(path);
-		},
 	},
 };
 </script>
@@ -173,6 +161,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	font-size: 1.125em;
+	color: var(--inverted-primary-text-color);
 	cursor: pointer;
 }
 
@@ -243,6 +232,7 @@ export default {
 
 .wallet-value {
 	font-size: 1.125em;
+	color: var(--inverted-primary-text-color);
 }
 
 .wallet-selected .wallet-address,
@@ -256,6 +246,7 @@ export default {
 	align-items: center;
 	padding: 0 0.5em;
 	margin-left: 1em;
+	color: var(--inverted-primary-text-color);
 	border: 1px solid var(--inverted-primary-text-color);
 	cursor: pointer;
 }

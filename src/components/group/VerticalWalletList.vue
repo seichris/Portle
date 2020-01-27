@@ -19,9 +19,9 @@
 						:wallet-id="walletId"
 						class="wallet-icon"
 					/>
-					<div
+					<router-link
 						class="wallet-details"
-						@click="openWallet(wallet.address)"
+						:to="`/wallet/${wallet.address}`"
 					>
 						<div class="wallet-address">
 							{{ formatWalletAddress(wallet.address) }}
@@ -29,7 +29,7 @@
 						<div class="wallet-value">
 							{{ formatMoney(walletBalance(walletId)) }}
 						</div>
-					</div>
+					</router-link>
 				</div>
 				<div class="wallet-actions">
 					<img
@@ -44,9 +44,9 @@
 					>
 				</div>
 			</div>
-			<div
+			<router-link
 				id="add-wallet"
-				@click="openNewWallet()"
+				:to="'/wallet/new'"
 			>
 				<div id="add-wallet-icon">
 					<img :src="plusIcon">
@@ -59,7 +59,7 @@
 						Metamask, ENS, address, etc
 					</div>
 				</div>
-			</div>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -160,18 +160,6 @@ export default {
 		removeWallet(wallet) {
 			Storage.removeWallet(wallet);
 			this.$router.go();
-		},
-		openPortfolio() {
-			const path = '/';
-			this.$router.push(path);
-		},
-		openWallet(address) {
-			const path = `/wallet/${address}`;
-			this.$router.push(path);
-		},
-		openNewWallet() {
-			const path = '/wallet/new';
-			this.$router.push(path);
 		},
 	},
 };
@@ -279,6 +267,7 @@ export default {
 .wallet-value {
 	font-size: 1.125em;
 	font-weight: bold;
+	color: var(--primary-text-color);
 }
 
 .wallet-selected .wallet-address,
@@ -290,6 +279,10 @@ export default {
 	height: 1em;
 	width: 1em;
 	opacity: 0.5;
+}
+
+#add-wallet-title {
+	color: var(--primary-text-color);
 }
 
 #add-wallet-subtitle {

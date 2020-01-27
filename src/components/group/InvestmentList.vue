@@ -9,7 +9,6 @@
 				:wallet-id="investment.walletId"
 				:protocol-id="investment.protocolId"
 				:price="investment.price"
-				@click.native="openInvestment(investment)"
 			/>
 		</div>
 		<div id="table">

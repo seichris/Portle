@@ -8,7 +8,6 @@
 				:asset-id="asset.id"
 				:wallet-id="asset.walletId"
 				:price="asset.price"
-				@click.native="openAsset(asset)"
 			/>
 		</div>
 		<div id="table">

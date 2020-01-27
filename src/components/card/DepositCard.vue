@@ -1,5 +1,8 @@
 <template>
-	<div id="card">
+	<router-link
+		id="card"
+		:to="`/wallet/${walletAddress}/deposit/${protocolId}/${assetId}`"
+	>
 		<Card
 			:amount="amount"
 			:ticker="ticker"
@@ -12,7 +15,7 @@
 			id="logo"
 			:asset-id="assetId"
 		/>
-	</div>
+	</router-link>
 </template>
 
 <script>
@@ -20,6 +23,7 @@ import AssetIcon from '../icon/AssetIcon.vue';
 import Card from './Card.vue';
 
 import Formatter from '../../utils/formatter.js';
+import Storage from '../../utils/storage.js';
 
 export default {
 	components: {
@@ -58,6 +62,10 @@ export default {
 		},
 		title() {
 			return Formatter.formatProtocol(this.protocolId);
+		},
+		walletAddress() {
+			const walletList = Storage.getWalletList();
+			return walletList[this.walletId].address;
 		},
 	},
 };

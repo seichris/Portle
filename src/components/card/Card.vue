@@ -103,6 +103,7 @@ export default {
 	text-overflow: ellipsis;
 	width: calc(100% - 0.75em);
 	font-size: 1.125em;
+	color: var(--primary-text-color);
 }
 
 .wallet-icon {

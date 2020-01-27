@@ -10,7 +10,6 @@
 				:protocol-id="deposit.protocolId"
 				:rate="deposit.rate"
 				:price="deposit.price"
-				@click.native="openDeposit(deposit)"
 			/>
 		</div>
 		<div id="table">
