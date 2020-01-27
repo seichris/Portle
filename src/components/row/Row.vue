@@ -47,10 +47,6 @@ export default {
 			type: String,
 			default: '',
 		},
-		rate: {
-			type: String,
-			default: '',
-		},
 		price: {
 			type: Number,
 			default: 0,
