@@ -67,7 +67,7 @@ class Formatter {
 	}
 
 	static formatSet(setId) {
-		const sets = {
+		const roboSets = {
 			'btcdai': 'BTCHIVOL',
 			'btceth2575': 'BTCETH2575',
 			'btceth5050': 'BTCETH5050',
@@ -90,11 +90,32 @@ class Formatter {
 			'stbtcdai': 'BTCLOVOL',
 			'stethdai': 'ETHLOVOL',
 		};
+		const socialSets = {
+			'bbb': 'BBB',
+			'btcmoon': 'BTCMOON',
+			'btcmoonx': 'BTCMOONX',
+			'btcusdcrsi': 'BTCUSDCRSI',
+			'eth10k': 'ETH10K',
+			'ethmoonx': 'ETHMOONX',
+			'ethusdadl4': 'ETHUSDADL4',
+			'evol': 'EVOL',
+			'flexbtc': 'FLEXBTC',
+			'flexeth': 'FLEXETH',
+			'flexethbtc': 'FLEXETHBTC',
+			'greed': 'GREED',
+			'ichiema': 'ICHIEMA',
+			'intbtc': 'INTBTC',
+			'inteth': 'INTETH',
+			'long': 'LONG',
+			'ric': 'RIC',
+			'tls': 'TLS',
+		};
+		const sets = {...roboSets, ...socialSets};
 		return sets[setId];
 	}
 
 	static formatSetName(setId) {
-		const sets = {
+		const roboSets = {
 			'btcdai': 'BTC Range Bound High Volatility',
 			'btceth2575': 'ETH BTC 75%/25% Weight',
 			'btceth5050': 'BTC ETH Equal Weight',
@@ -117,6 +138,27 @@ class Formatter {
 			'stbtcdai': 'BTC Range Bound Low Volatility',
 			'stethdai': 'ETH Range Bound Low Volatility',
 		};
+		const socialSets = {
+			'bbb': 'BullBearBitcoin Set',
+			'btcmoon': 'BTC Moonshot Set',
+			'btcmoonx': 'BTC Moonshot X Set',
+			'btcusdcrsi': 'WBTC USDC RSI Set',
+			'eth10k': 'ETH Maximalist Set',
+			'ethmoonx': 'ETH Moonshot X Set',
+			'ethusdadl4': 'ETHUSD ADL 4H Set',
+			'evol': 'ETH Volatility Adjusted Set',
+			'flexbtc': 'FlexBTC Set',
+			'flexeth': 'FlexETH Set',
+			'flexethbtc': 'FlexETH/BTC Set',
+			'greed': 'Fear & Greed Sentiment Set',
+			'ichiema': '12H Ichimoku HA EMA Breakout Set',
+			'intbtc': 'The Intelligent BTC Trading Set',
+			'inteth': 'The Intelligent ETH Trading Set',
+			'long': 'High Conviction / Fundamentals Set',
+			'ric': 'Target 2022 Set',
+			'tls': 'TrustlessState Set',
+		};
+		const sets = {...roboSets, ...socialSets};
 		return sets[setId];
 	}
 }
