@@ -29,7 +29,7 @@
 import BigNumber from 'bignumber.js';
 
 import AssetCard from '../card/AssetCard.vue';
-import Row from '../Row.vue';
+import Row from '../row/Row.vue';
 
 import Converter from '../../utils/converter.js';
 import Formatter from '../../utils/formatter.js';

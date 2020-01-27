@@ -22,9 +22,9 @@
 <script>
 import BigNumber from 'bignumber.js';
 
-import WalletIcon from './icon/WalletIcon.vue';
+import WalletIcon from '../icon/WalletIcon.vue';
 
-import Formatter from '../utils/formatter.js';
+import Formatter from '../../utils/formatter.js';
 
 export default {
 	components: {
