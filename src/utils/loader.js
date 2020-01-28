@@ -118,15 +118,6 @@ class Loader {
 			.join('');
 		const query = `
 			query {
-				cTokens {
-					symbol
-					address
-					supplyRate
-					supplyIndex
-					underlying {
-						address
-					}
-				}
 				${addressQuery}
 			}`;
 		const opts = {
@@ -202,15 +193,6 @@ class Loader {
 			.join('');
 		const query = `
 			query {
-				iTokens {
-					symbol
-					address
-					supplyIndex
-					supplyRate
-					underlying {
-						address
-					}
-				}
 				${addressQuery}
 			}`;
 		const opts = {
