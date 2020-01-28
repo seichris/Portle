@@ -9,7 +9,7 @@
 		/>
 		<div id="asset-section">
 			<div
-				v-if="assets.length > 0"
+				v-if="walletAssets.length > 0"
 				class="category"
 			>
 				<div class="category-header">
@@ -21,12 +21,12 @@
 					</div>
 				</div>
 				<AssetList
-					:assets="assets"
+					:assets="walletAssets"
 					:prices="prices"
 				/>
 			</div>
 			<div
-				v-if="deposits.length > 0"
+				v-if="walletDeposits.length > 0"
 				class="category"
 			>
 				<div class="category-header">
@@ -38,13 +38,13 @@
 					</div>
 				</div>
 				<DepositList
-					:deposits="deposits"
+					:deposits="walletDeposits"
 					:prices="prices"
 					:rates="rates"
 				/>
 			</div>
 			<div
-				v-if="investments.length > 0"
+				v-if="walletInvestments.length > 0"
 				class="category"
 			>
 				<div class="category-header">
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 				<InvestmentList
-					:investments="investments"
+					:investments="walletInvestments"
 					:components="components"
 					:prices="prices"
 				/>
@@ -119,26 +119,35 @@ export default {
 		},
 		assets() {
 			const assets = Wallets.getAssets(this.wallets);
-			return assets.filter((asset) => asset.walletId == this.walletId);
+			return assets;
 		},
 		deposits() {
 			const deposits = Wallets.getDeposits(this.wallets);
-			return deposits.filter((deposit) => deposit.walletId == this.walletId);
+			return deposits;
 		},
 		investments() {
 			const investments = Wallets.getInvestments(this.wallets);
-			return investments.filter((investment) => investment.walletId == this.walletId);
+			return investments;
+		},
+		walletAssets() {
+			return this.assets.filter((asset) => asset.walletId == this.walletId);
+		},
+		walletDeposits() {
+			return this.deposits.filter((deposit) => deposit.walletId == this.walletId);
+		},
+		walletInvestments() {
+			return this.investments.filter((investment) => investment.walletId == this.walletId);
 		},
 		assetBalance() {
-			const balance = Balance.getAssets(this.assets, this.prices);
+			const balance = Balance.getAssets(this.walletAssets, this.prices);
 			return balance.toString();
 		},
 		depositBalance() {
-			const balance = Balance.getDeposits(this.deposits, this.prices);
+			const balance = Balance.getDeposits(this.walletDeposits, this.prices);
 			return balance.toString();
 		},
 		investmentBalance() {
-			const balance = Balance.getInvestments(this.investments, this.components, this.prices);
+			const balance = Balance.getInvestments(this.walletInvestments, this.components, this.prices);
 			return balance.toString();
 		},
 	},
@@ -196,18 +205,15 @@ export default {
 		},
 		async _loadPrices() {
 			const assetSet = {};
-			const assets = Wallets.getAssets(this.wallets);
-			const deposits = Wallets.getDeposits(this.wallets);
-			const investments = Wallets.getInvestments(this.wallets);
-			for (const asset of assets) {
+			for (const asset of this.assets) {
 				const { id } = asset;
 				assetSet[id] = true;
 			}
-			for (const deposit of deposits) {
+			for (const deposit of this.deposits) {
 				const { assetId } = deposit;
 				assetSet[assetId] = true;
 			}
-			for (const investment of investments) {
+			for (const investment of this.investments) {
 				const { protocolId, id } = investment;
 				const components = this.components[protocolId][id];
 				for (const component of components) {
@@ -215,10 +221,10 @@ export default {
 					assetSet[assetId] = true;
 				}
 			}
-			const assetIds = Object.keys(assetSet);
-			const prices = await Loader.loadPrices(assetIds);
-			for (let i = 0; i < assetIds.length; i++) {
-				const assetId = assetIds[i];
+			const assets = Object.keys(assetSet);
+			const prices = await Loader.loadPrices(assets);
+			for (let i = 0; i < assets.length; i++) {
+				const assetId = assets[i];
 				const price = prices[assetId];
 				Vue.set(this.prices, assetId, price);
 			}
