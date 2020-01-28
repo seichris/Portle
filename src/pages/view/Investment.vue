@@ -127,12 +127,6 @@ export default {
 					fulcrum: {},
 					maker: {},
 				},
-				borrow: {
-					compound: {},
-					dydx: {},
-					fulcrum: {},
-					maker: {},
-				},
 			},
 		};
 	},
@@ -376,15 +370,10 @@ export default {
 					Vue.set(wallet.deposits.compound, assetId, tokenBalance);
 					// Set rates
 					const supplyRawRate = balance.token.supplyRate;
-					const borrowRawRate = balance.token.borrowRate;
 					const supplyRawRateNumber = new BigNumber(supplyRawRate);
-					const borrowRawRateNumber = new BigNumber(borrowRawRate);
 					const supplyRateNumber = supplyRawRateNumber.times('2102400').div('1e18');
-					const borrowRateNumber = borrowRawRateNumber.times('2102400').div('1e18');
 					const supplyRate = supplyRateNumber.toString();
-					const borrowRate = borrowRateNumber.toString();
 					Vue.set(this.rates.supply.compound, assetId, supplyRate);
-					Vue.set(this.rates.borrow.compound, assetId, borrowRate);
 				}
 			}
 		},
@@ -465,15 +454,10 @@ export default {
 					Vue.set(wallet.deposits.fulcrum, assetId, tokenBalance);
 					// Set rates
 					const supplyRawRate = balance.token.supplyRate;
-					const borrowRawRate = balance.token.borrowRate;
 					const supplyRawRateNumber = new BigNumber(supplyRawRate);
-					const borrowRawRateNumber = new BigNumber(borrowRawRate);
 					const supplyRateNumber = supplyRawRateNumber.div('1e18').div('1e2');
-					const borrowRateNumber = borrowRawRateNumber.div('1e18').div('1e2');
 					const supplyRate = supplyRateNumber.toString();
-					const borrowRate = borrowRateNumber.toString();
 					Vue.set(this.rates.supply.fulcrum, assetId, supplyRate);
-					Vue.set(this.rates.borrow.fulcrum, assetId, borrowRate);
 				}
 			}
 		},
