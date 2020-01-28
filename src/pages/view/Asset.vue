@@ -575,6 +575,9 @@ export default {
 #amount {
 	font-size: 4em;
 	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	color: var(--inverted-primary-text-color);
 }
 
