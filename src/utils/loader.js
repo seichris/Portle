@@ -98,6 +98,40 @@ class Loader {
 		return balances;
 	}
 
+	static async loadAave(addresses) {
+		const url = 'https://api.thegraph.com/subgraphs/name/aave/protocol';
+		const addressQuery = addresses
+			.map(address => { return `
+				user_${address}: user(id: "${address}") {
+					reserves {
+						reserve {
+							liquidityIndex
+							liquidityRate
+							aToken {
+								underlyingAssetAddress
+							}
+						}
+						userBalanceIndex
+						principalATokenBalance
+					}
+				}
+			`;})
+			.join('');
+		const query = `
+			query {
+				${addressQuery}
+			}`;
+		const opts = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ query }),
+		};
+		const response = await fetch(url, opts);
+		const json = await response.json();
+		const data = json.data;
+		return data;
+	}
+
 	static async loadCompound(addresses) {
 		const url = 'https://api.thegraph.com/subgraphs/name/destiner/compound';
 		const addressQuery = addresses
