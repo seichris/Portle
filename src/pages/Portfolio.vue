@@ -77,6 +77,7 @@ import Storage from '../utils/storage.js';
 import Wallets from '../utils/wallets.js';
 
 import tokenAddresses from '../data/addresses.json';
+import tokenDecimals from '../data/decimals.json';
 
 import AssetList from '../components/group/AssetList.vue';
 import DepositList from '../components/group/DepositList.vue';
@@ -101,6 +102,7 @@ export default {
 			prices: {},
 			rates: {
 				supply: {
+					aave: {},
 					compound: {},
 					dydx: {},
 					fulcrum: {},
@@ -154,6 +156,7 @@ export default {
 					address,
 					assets: {},
 					deposits: {
+						aave: {},
 						compound: {},
 						dydx: {},
 						fulcrum: {},
@@ -171,6 +174,7 @@ export default {
 		async _loadBalances() {
 			const balancePromises = [
 				this._loadAssets(),
+				this._loadAave(),
 				this._loadCompound(),
 				this._loadDydx(),
 				this._loadFulcrum(),
@@ -218,6 +222,41 @@ export default {
 				for (const assetId in balances) {
 					const balance = balances[assetId];
 					Vue.set(wallet.assets, assetId, balance);
+				}
+			}
+		},
+		async _loadAave() {
+			const walletCount = this.wallets.length;
+			const addresses = this.wallets.map(wallet => wallet.address);
+			const data = await Loader.loadAave(addresses);
+			for (let i = 0; i < walletCount; i++) {
+				const address = addresses[i];
+				const walletBalance = data[`user_${address}`];
+				if (!walletBalance) {
+					continue;
+				}
+				const reserves = walletBalance.reserves;
+				const wallet = this.wallets[i];
+				for (const userReserve of reserves) {
+					const addressMap = Converter.reverseMap(tokenAddresses);
+					const rawAssetAddress = userReserve.reserve.aToken.underlyingAssetAddress;
+					const assetAddress = ethers.utils.getAddress(rawAssetAddress);
+					const assetId = addressMap[assetAddress];
+					const liquidityIndex = userReserve.reserve.liquidityIndex;
+					const userBalanceIndex = userReserve.userBalanceIndex;
+					const tokenRawBalance = userReserve.principalATokenBalance;
+					// Set balances
+					const ten = new BigNumber(10);
+					const decimals = tokenDecimals[assetId];
+					const multiplier = ten.pow(decimals);
+					const tokenRawBalanceNumber = new BigNumber(tokenRawBalance);
+					const tokenBalanceNumber = tokenRawBalanceNumber
+						.times(multiplier).times(liquidityIndex).div(userBalanceIndex);
+					const tokenBalance = tokenBalanceNumber.toString();
+					Vue.set(wallet.deposits.aave, assetId, tokenBalance);
+					// Set rates
+					const supplyRate = userReserve.reserve.liquidityRate;
+					Vue.set(this.rates.supply.aave, assetId, supplyRate);
 				}
 			}
 		},
