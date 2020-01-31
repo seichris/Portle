@@ -17,9 +17,9 @@ class Loader {
 		});
 
 		const promises = [
-			this.processAssets(addresses),
-			this.processDeposits(addresses),
-			this.processInvestments(addresses),
+			this.loadAssets(addresses),
+			this.loadDeposits(addresses),
+			this.loadInvestments(addresses),
 		];
 		const data = await Promise.all(promises);
 
@@ -33,7 +33,7 @@ class Loader {
 		const rates = data[1].rates;
 		const components = data[2].components;
 
-		const prices = await this.processPrices(wallets, components);
+		const prices = await this.loadPrices(wallets, components);
 
 		return {
 			wallets,
@@ -43,7 +43,7 @@ class Loader {
 		};
 	}
 
-	static async processPrices(wallets, components) {
+	static async loadPrices(wallets, components) {
 		const assets = Wallets.getAssets(wallets);
 		const deposits = Wallets.getDeposits(wallets);
 		const investments = Wallets.getInvestments(wallets);
@@ -69,7 +69,7 @@ class Loader {
 		return prices;
 	}
 
-	static async processAssets(addresses) {
+	static async loadAssets(addresses) {
 		const assets = addresses.map(() => {
 			return {};
 		});
@@ -84,7 +84,7 @@ class Loader {
 		};
 	}
 
-	static async processDeposits(addresses) {
+	static async loadDeposits(addresses) {
 		const deposits = addresses.map(() => {
 			return {};
 		});
@@ -92,11 +92,11 @@ class Loader {
 			supply: {},
 		};
 		const promises = [
-			this.processAave(addresses),
-			this.processCompound(addresses),
-			this.processDydx(addresses),
-			this.processFulcrum(addresses),
-			this.processMaker(addresses),
+			this.loadAave(addresses),
+			this.loadCompound(addresses),
+			this.loadDydx(addresses),
+			this.loadFulcrum(addresses),
+			this.loadMaker(addresses),
 		];
 		const depositData = await Promise.all(promises);
 
@@ -121,15 +121,15 @@ class Loader {
 		};
 	}
 
-	static async processInvestments(addresses) {
+	static async loadInvestments(addresses) {
 		const investments = addresses.map(() => {
 			return {};
 		});
 		const components = {};
 		const promises = [
-			this.processMelon(addresses),
-			this.processTokenSets(addresses),
-			this.processUniswap(addresses),
+			this.loadMelon(addresses),
+			this.loadTokenSets(addresses),
+			this.loadUniswap(addresses),
 		];
 		const investmentData = await Promise.all(promises);
 
@@ -150,7 +150,7 @@ class Loader {
 		};
 	}
 
-	static async processAave(addresses) {
+	static async loadAave(addresses) {
 		const deposits = addresses.map(() => {
 			return {};
 		});
@@ -201,7 +201,7 @@ class Loader {
 		};
 	}
 
-	static async processCompound(addresses) {
+	static async loadCompound(addresses) {
 		const deposits = addresses.map(() => {
 			return {};
 		});
@@ -244,7 +244,7 @@ class Loader {
 		};
 	}
 
-	static async processDydx(addresses) {
+	static async loadDydx(addresses) {
 		const deposits = addresses.map(() => {
 			return {};
 		});
@@ -306,7 +306,7 @@ class Loader {
 		};
 	}
 
-	static async processFulcrum(addresses) {
+	static async loadFulcrum(addresses) {
 		const deposits = addresses.map(() => {
 			return {};
 		});
@@ -349,7 +349,7 @@ class Loader {
 		};
 	}
 
-	static async processMaker(addresses) {
+	static async loadMaker(addresses) {
 		const deposits = addresses.map(() => {
 			return {};
 		});
@@ -395,7 +395,7 @@ class Loader {
 		};
 	}
 
-	static async processMelon(addresses) {
+	static async loadMelon(addresses) {
 		const investments = addresses.map(() => {
 			return {};
 		});
@@ -447,7 +447,7 @@ class Loader {
 		};
 	}
 
-	static async processTokenSets(addresses) {
+	static async loadTokenSets(addresses) {
 		const investments = addresses.map(() => {
 			return {};
 		});
@@ -497,7 +497,7 @@ class Loader {
 		};
 	}
 
-	static async processUniswap(addresses) {
+	static async loadUniswap(addresses) {
 		const investments = addresses.map(() => {
 			return {};
 		});
