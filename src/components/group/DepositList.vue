@@ -85,7 +85,7 @@ export default {
 			});
 			const meaningfulDeposits = deposits.filter(deposit => {
 				const value = new BigNumber(deposit.value);
-				return value.gt(0);
+				return value.gt(1);
 			});
 			return meaningfulDeposits;
 		},
