@@ -20,6 +20,7 @@ class Formatter {
 			'compound': 'Compound',
 			'dydx': 'dYdX',
 			'fulcrum': 'Fulcrum',
+			'hydro': 'DDEX',
 			'maker': 'Maker DSR',
 			'uniswap': 'Uniswap',
 			'tokensets': 'TokenSets',
