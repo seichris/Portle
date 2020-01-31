@@ -96,6 +96,7 @@ class Loader {
 			this.loadCompound(addresses),
 			this.loadDydx(addresses),
 			this.loadFulcrum(addresses),
+			this.loadHydro(addresses),
 			this.loadMaker(addresses),
 		];
 		const depositData = await Promise.all(promises);
@@ -106,14 +107,16 @@ class Loader {
 			deposits[i].compound = depositData[1].deposits[i];
 			deposits[i].dydx = depositData[2].deposits[i];
 			deposits[i].fulcrum = depositData[3].deposits[i];
-			deposits[i].maker = depositData[4].deposits[i];
+			deposits[i].hydro = depositData[4].deposits[i];
+			deposits[i].maker = depositData[5].deposits[i];
 		}
 
 		rates.supply.aave = depositData[0].rates.supply;
 		rates.supply.compound = depositData[1].rates.supply;
 		rates.supply.dydx = depositData[2].rates.supply;
 		rates.supply.fulcrum = depositData[3].rates.supply;
-		rates.supply.maker = depositData[4].rates.supply;
+		rates.supply.hydro = depositData[4].rates.supply;
+		rates.supply.maker = depositData[5].rates.supply;
 
 		return {
 			deposits,
@@ -338,6 +341,49 @@ class Loader {
 				const supplyRawRate = balance.token.supplyRate;
 				const supplyRawRateNumber = new BigNumber(supplyRawRate);
 				const supplyRateNumber = supplyRawRateNumber.div('1e18').div('1e2');
+				const supplyRate = supplyRateNumber.toString();
+				rates.supply[assetId] = supplyRate;
+			}
+		}
+
+		return {
+			deposits,
+			rates,
+		};
+	}
+
+	static async loadHydro(addresses) {
+		const deposits = addresses.map(() => {
+			return {};
+		});
+		const rates = {
+			supply: {},
+		};
+		const addressCount = addresses.length;
+
+		const data = await fetchHydro(addresses);
+		for (let i = 0; i < addressCount; i++) {
+			const address = addresses[i];
+			const walletBalance = data[`user_${address}`];
+			if (!walletBalance) {
+				continue;
+			}
+			const balances = walletBalance.balances;
+			for (const balance of balances) {
+				const addressMap = Converter.reverseMap(tokenAddresses);
+				const assetAddress = ethers.utils.getAddress(balance.asset.id);
+				const assetId = addressMap[assetAddress];
+				const index = balance.asset.lendingPool.supplyIndex;
+				const tokenRawBalance = balance.balance;
+				// Set balances
+				const tokenRawBalanceNumber = new BigNumber(tokenRawBalance);
+				const tokenBalanceNumber = tokenRawBalanceNumber.times(index).div('1e18');
+				const tokenBalance = tokenBalanceNumber.toString();
+				deposits[i][assetId] = tokenBalance;
+				// Set rates
+				const supplyRawRate = balance.asset.lendingPool.supplyRate;
+				const supplyRawRateNumber = new BigNumber(supplyRawRate);
+				const supplyRateNumber = supplyRawRateNumber.div('1e18');
 				const supplyRate = supplyRateNumber.toString();
 				rates.supply[assetId] = supplyRate;
 			}
@@ -769,6 +815,39 @@ async function fetchFulcrum(addresses) {
 						}
 					}
 					balance
+				}
+			}
+		`;})
+		.join('');
+	const query = `
+		query {
+			${addressQuery}
+		}`;
+	const opts = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ query }),
+	};
+	const response = await fetch(url, opts);
+	const json = await response.json();
+	const data = json.data;
+	return data;
+}
+
+async function fetchHydro(addresses) {
+	const url = 'https://api.thegraph.com/subgraphs/name/destiner/hydro';
+	const addressQuery = addresses
+		.map(address => { return `
+			user_${address}: user(id: "${address}") {
+				balances {
+					balance
+					asset {
+						id
+						lendingPool {
+							supplyRate
+							supplyIndex
+						}
+					}
 				}
 			}
 		`;})
