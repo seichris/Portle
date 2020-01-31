@@ -158,8 +158,13 @@ export default {
 			navigator.clipboard.writeText(address);
 		},
 		removeWallet(wallet) {
+			const walletIndex = this.wallets.indexOf(wallet);
 			Storage.removeWallet(wallet);
-			this.$router.go();
+			if (walletIndex == this.selectedWallet) {
+				this.$router.push('/');
+			} else {
+				this.$router.go();
+			}
 		},
 	},
 };
