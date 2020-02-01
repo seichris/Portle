@@ -6,7 +6,6 @@ import bfLogo from '../../public/img/assets/bf.svg';
 import bnbLogo from '../../public/img/assets/bnb.svg';
 import bntLogo from '../../public/img/assets/bnt.svg';
 import btmLogo from '../../public/img/assets/btm.svg';
-import civicLogo from '../../public/img/assets/civic.svg';
 import cvcLogo from '../../public/img/assets/cvc.svg';
 import daiLogo from '../../public/img/assets/dai.svg';
 import dgdLogo from '../../public/img/assets/dgd.svg';
@@ -103,7 +102,6 @@ class AssetLoader {
 			'bnb': bnbLogo,
 			'bnt': bntLogo,
 			'btm': btmLogo,
-			'civic': civicLogo,
 			'cvc': cvcLogo,
 			'dai': daiLogo,
 			'dgd': dgdLogo,
