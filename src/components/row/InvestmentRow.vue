@@ -5,6 +5,7 @@
 			:ticker="ticker"
 			:wallet-id="walletId"
 			:title="title"
+			:subtitle="subtitle"
 			:price="price"
 		/>
 	</router-link>
@@ -46,6 +47,10 @@ export default {
 		title() {
 			const title = Formatter.formatProtocol(this.protocolId);
 			return title;
+		},
+		subtitle() {
+			const priceString = Formatter.formatMoney(this.price);
+			return `${priceString}/`;
 		},
 		ticker() {
 			if (this.protocolId == 'uniswap') {
