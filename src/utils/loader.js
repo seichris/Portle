@@ -171,12 +171,8 @@ class Loader {
 			}
 			const reserves = walletBalance.reserves;
 			for (const userReserve of reserves) {
-				const addressMap = Converter.reverseMap(tokenAddresses);
-				const rawAssetAddress = userReserve.reserve.aToken.underlyingAssetAddress;
-				const assetAddress = ethers.utils.getAddress(rawAssetAddress);
-				const assetId = assetAddress == '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
-					? 'eth'
-					: addressMap[assetAddress];
+				const assetAddress = userReserve.reserve.aToken.underlyingAssetAddress;
+				const assetId = getAssetId(assetAddress);
 				const liquidityIndex = userReserve.reserve.liquidityIndex;
 				const userBalanceIndex = userReserve.userBalanceIndex;
 				const tokenRawBalance = userReserve.principalATokenBalance;
@@ -222,9 +218,8 @@ class Loader {
 			}
 			const balances = walletBalance.balances;
 			for (const balance of balances) {
-				const addressMap = Converter.reverseMap(tokenAddresses);
-				const assetAddress = ethers.utils.getAddress(balance.token.underlying.address);
-				const assetId = addressMap[assetAddress];
+				const assetAddress = balance.token.underlying.address;
+				const assetId = getAssetId(assetAddress);
 				const supplyIndex = balance.token.supplyIndex;
 				const tokenRawBalance = balance.balance;
 
@@ -259,9 +254,8 @@ class Loader {
 		const data = await fetchDydx(addresses);
 		const markets = data.markets;
 		for (const market of markets) {
-			const addressMap = Converter.reverseMap(tokenAddresses);
-			const assetAddress = ethers.utils.getAddress(market.token.address);
-			const assetId = addressMap[assetAddress];
+			const assetAddress = market.token.address;
+			const assetId = getAssetId(assetAddress);
 
 			const supplyRawRate = market.supplyRate;
 			const supplyRawRateNumber = new BigNumber(supplyRawRate);
@@ -279,9 +273,8 @@ class Loader {
 			const balances = walletBalance.balances;
 
 			const marketBalances = balances.reduce((map, balance) => {
-				const addressMap = Converter.reverseMap(tokenAddresses);
-				const assetAddress = ethers.utils.getAddress(balance.market.token.address);
-				const assetId = addressMap[assetAddress];
+				const assetAddress = balance.market.token.address;
+				const assetId = getAssetId(assetAddress);
 
 				const index = balance.market.supplyIndex;
 				const accountRawBalance = balance.balance;
@@ -327,9 +320,8 @@ class Loader {
 			}
 			const balances = walletBalance.balances;
 			for (const balance of balances) {
-				const addressMap = Converter.reverseMap(tokenAddresses);
-				const assetAddress = ethers.utils.getAddress(balance.token.underlying.address);
-				const assetId = addressMap[assetAddress];
+				const assetAddress = balance.token.underlying.address;
+				const assetId = getAssetId(assetAddress);
 				const index = balance.token.supplyIndex;
 				const tokenRawBalance = balance.balance;
 				// Set balances
@@ -370,9 +362,8 @@ class Loader {
 			}
 			const balances = walletBalance.balances;
 			for (const balance of balances) {
-				const addressMap = Converter.reverseMap(tokenAddresses);
-				const assetAddress = ethers.utils.getAddress(balance.asset.id);
-				const assetId = addressMap[assetAddress];
+				const assetAddress = balance.asset.id;
+				const assetId = getAssetId(assetAddress);
 				const index = balance.asset.lendingPool.supplyIndex;
 				const tokenRawBalance = balance.balance;
 				// Set balances
@@ -456,7 +447,6 @@ class Loader {
 				continue;
 			}
 			const investments = walletBalance.investments;
-			const addressMap = Converter.reverseMap(tokenAddresses);
 			for (const investment of investments) {
 				const id = investment.fund.name;
 				const balance = investment.shares;
@@ -473,8 +463,8 @@ class Loader {
 					const holdingAmount = holding.amount;
 					const holdingAmountNumber = new BigNumber(holdingAmount);
 					const holdingAsset = holding.asset.id;
-					const componentAddress = ethers.utils.getAddress(holdingAsset);
-					const componentAssetId = addressMap[componentAddress];
+					const componentAddress = holdingAsset;
+					const componentAssetId = getAssetId(componentAddress);
 					const componentAmount = holdingAmountNumber.div(totalShares).toString();
 					const component = {
 						assetId: componentAssetId,
@@ -508,7 +498,6 @@ class Loader {
 				continue;
 			}
 			const sets = walletBalance.balances;
-			const addressMap = Converter.reverseMap(tokenAddresses);
 			for (const set of sets) {
 				const id = set.set_.set_.symbol.toLowerCase();
 				const balance = set.balance;
@@ -521,8 +510,8 @@ class Loader {
 				const componentCount = underlyingComponents.length;
 				const investmentComponents = [];
 				for (let i = 0; i < componentCount; i++) {
-					const componentAddress = ethers.utils.getAddress(underlyingComponents[i]);
-					const componentAssetId = addressMap[componentAddress];
+					const componentAddress = underlyingComponents[i];
+					const componentAssetId = getAssetId(componentAddress);
 					const componentUnit = underlyingUnits[i];
 					const componentBalance = unitsNumber.times(componentUnit).div(underlyingNaturalUnit).div(naturalUnit).times('1e18');
 					const componentAmount = Converter.toAmount(componentBalance, componentAssetId);
@@ -559,13 +548,8 @@ class Loader {
 			}
 			const pools = walletBalance.exchangeBalances;
 			for (const pool of pools) {
-				const addressMap = Converter.reverseMap(tokenAddresses);
-				const tokenAddress = pool.exchange.tokenAddress;
-				const address = tokenAddress == '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f'
-					? '0xc011a72400e58ecd99ee497cf89e3775d4bd732f'
-					: tokenAddress;
-				const assetAddress = ethers.utils.getAddress(address);
-				const assetId = addressMap[assetAddress];
+				const assetAddress = pool.exchange.tokenAddress;
+				const assetId = getAssetId(assetAddress);
 				if (!assetId) {
 					continue;
 				}
@@ -648,7 +632,6 @@ async function fetchAssets(addresses) {
 	for (const address of addresses) {
 		balances[address] = {};
 	}
-	const addressMap = Converter.reverseMap(tokenAddresses);
 	for (let i = 0; i < addressCount; i++) {
 		const json = balanceJson[i];
 		const address = addresses[i];
@@ -658,7 +641,7 @@ async function fetchAssets(addresses) {
 			if (!assetAddress) {
 				continue;
 			}
-			const assetId = addressMap[assetAddress];
+			const assetId = getAssetId(assetAddress);
 			if (!assetId) {
 				continue;
 			}
@@ -1016,6 +999,22 @@ function getProvider() {
 	const web3Endpoint = 'https://mainnet.infura.io/v3/93e3393c76ed4e1f940d0266e2fdbda2';
 	const provider = new ethers.providers.JsonRpcProvider(web3Endpoint);
 	return provider;
+}
+
+function getAssetId(rawAddress) {
+	const address = ethers.utils.getAddress(rawAddress);
+	for (const asset in tokenAddresses) {
+		const assetAddress = tokenAddresses[asset];
+		if (address == assetAddress) {
+			return asset;
+		}
+	}
+	const addressMap = {
+		'0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE': 'eth',
+		'0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F': 'snx',
+		'0x57Ab1ec28D129707052df4dF418D58a2D46d5f51': 'susd',
+	};
+	return addressMap[address];
 }
 
 export default Loader;
