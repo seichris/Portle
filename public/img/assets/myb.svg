@@ -1,0 +1,83 @@
+<svg viewBox="0 0 1106 1986" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="a" d="M0 3.373494h1105.66265V1994.57831H0z"/>
+    <path id="c" d="M0 271.084337L552.831325 5.60241v1112.71084"/>
+    <path id="e" d="M4.638554 1118.31325V5.542169L557.46988 271.084337z"/>
+    <path id="g" d="M0 3.373494h1105.66265V1994.57831H0z"/>
+    <path id="i" d="M0 3.373494h1105.66265V1994.57831H0z"/>
+    <path id="k" d="M0 3.373494h1105.66265V1994.57831H0z"/>
+    <path id="m" d="M0 847.650602l552.650602 291.626508V0z"/>
+    <path id="o" d="M0 3.373494h1105.66265V1994.57831H0z"/>
+    <path id="q" d="M4.638554 0v1139.27711l552.710844-291.686749"/>
+    <path id="s" d="M0 3.373494h1105.66265V1994.57831H0z"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="#DD464C" fill-rule="nonzero" d="M1105.66265 847.674699L552.831325.024096.301205 847.554217l310.120482 139.216867L0 1126.53012l552.831325 859.39759 552.831325-859.39759-309.759036-139.457831z"/>
+    <g transform="translate(0 -6)">
+      <mask id="b" fill="#fff">
+        <use xlink:href="#a"/>
+      </mask>
+      <g mask="url(#b)">
+        <g transform="translate(0 861.445783)">
+          <mask id="d" fill="#fff">
+            <use xlink:href="#c"/>
+          </mask>
+          <path fill="#DD464C" fill-rule="nonzero" mask="url(#d)" d="M272.951807 122.831325L0 271.084337 552.831325 556.86747V265.361446z"/>
+        </g>
+        <g transform="translate(548.192771 861.445783)">
+          <mask id="f" fill="#fff">
+            <use xlink:href="#e"/>
+          </mask>
+          <path fill="#C23D43" fill-rule="nonzero" mask="url(#f)" d="M4.638554 265.361446v291.385542L557.46988 271.084337l-272.590362-148.13253"/>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(0 -6)">
+      <mask id="h" fill="#fff">
+        <use xlink:href="#g"/>
+      </mask>
+      <path d="M552.831325 1145.3012V859.036145L276.746988 999.578313 552.831325 1145.3012zM.301205 853.554217l552.53012-285.903615V6.024096L.301205 853.554217z" fill="#FDCC59" fill-rule="nonzero" mask="url(#h)"/>
+    </g>
+    <g transform="translate(0 -6)">
+      <mask id="j" fill="#fff">
+        <use xlink:href="#i"/>
+      </mask>
+      <path fill="#FD8B19" fill-rule="nonzero" mask="url(#j)" d="M552.831325 6.024096V1145.3012l552.710845-291.686742"/>
+    </g>
+    <g transform="translate(0 -6)">
+      <mask id="l" fill="#fff">
+        <use xlink:href="#k"/>
+      </mask>
+      <g mask="url(#l)">
+        <g transform="translate(0 6.024096)">
+          <mask id="n" fill="#fff">
+            <use xlink:href="#m"/>
+          </mask>
+          <path fill="#DD464C" fill-rule="nonzero" mask="url(#n)" d="M272.951807 995.542169L0 847.650602l552.831325-286.024096v291.385542z"/>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(0 -6)">
+      <mask id="p" fill="#fff">
+        <use xlink:href="#o"/>
+      </mask>
+      <g mask="url(#p)">
+        <g transform="translate(548.192771 6.024096)">
+          <mask id="r" fill="#fff">
+            <use xlink:href="#q"/>
+          </mask>
+          <path fill="#C23D43" fill-rule="nonzero" mask="url(#r)" d="M4.638554 853.012048V561.626506L557.46988 847.650602 284.879518 995.481928"/>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(0 -6)">
+      <mask id="t" fill="#fff">
+        <use xlink:href="#s"/>
+      </mask>
+      <g mask="url(#t)" fill-rule="nonzero">
+        <path fill="#FDCC59" d="M0 1132.53012l552.831325 859.457831v-573.79518"/>
+        <path fill="#FD8B19" d="M552.831325 1418.192771v573.79518l552.831325-859.457831z"/>
+      </g>
+    </g>
+  </g>
+</svg>

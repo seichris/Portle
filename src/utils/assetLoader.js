@@ -1,51 +1,99 @@
+import adtLogo from '../../public/img/assets/adt.svg';
 import aeLogo from '../../public/img/assets/ae.svg';
+import ambLogo from '../../public/img/assets/amb.svg';
 import antLogo from '../../public/img/assets/ant.svg';
 import astLogo from '../../public/img/assets/ast.svg';
 import batLogo from '../../public/img/assets/bat.svg';
 import bfLogo from '../../public/img/assets/bf.svg';
+import blzLogo from '../../public/img/assets/blz.svg';
 import bnbLogo from '../../public/img/assets/bnb.svg';
 import bntLogo from '../../public/img/assets/bnt.svg';
+import brdLogo from '../../public/img/assets/brd.svg';
 import btmLogo from '../../public/img/assets/btm.svg';
+import btuLogo from '../../public/img/assets/btu.svg';
+import cnnLogo from '../../public/img/assets/cnn.svg';
+import cofiLogo from '../../public/img/assets/cofi.svg';
+import crptLogo from '../../public/img/assets/crpt.svg';
 import cvcLogo from '../../public/img/assets/cvc.svg';
 import daiLogo from '../../public/img/assets/dai.svg';
+import dataLogo from '../../public/img/assets/data.svg';
+import dentLogo from '../../public/img/assets/dent.svg';
 import dgdLogo from '../../public/img/assets/dgd.svg';
 import dgxLogo from '../../public/img/assets/dgx.svg';
+import drgnLogo from '../../public/img/assets/drgn.svg';
+import edoLogo from '../../public/img/assets/edo.svg';
+import elfLogo from '../../public/img/assets/elf.svg';
 import engLogo from '../../public/img/assets/eng.svg';
 import enjLogo from '../../public/img/assets/enj.svg';
 import ethLogo from '../../public/img/assets/eth.svg';
+import ethosLogo from '../../public/img/assets/ethos.svg';
+import evxLogo from '../../public/img/assets/evx.svg';
+import funLogo from '../../public/img/assets/fun.svg';
 import gnoLogo from '../../public/img/assets/gno.svg';
 import gntLogo from '../../public/img/assets/gnt.svg';
+import gtoLogo from '../../public/img/assets/gto.svg';
 import htLogo from '../../public/img/assets/ht.svg';
+import intLogo from '../../public/img/assets/int.svg';
+import iotxLogo from '../../public/img/assets/iotx.svg';
+import kickLogo from '../../public/img/assets/kick.svg';
 import kncLogo from '../../public/img/assets/knc.svg';
+import lendLogo from '../../public/img/assets/lend.svg';
 import linkLogo from '../../public/img/assets/link.svg';
 import loomLogo from '../../public/img/assets/loom.svg';
 import lrcLogo from '../../public/img/assets/lrc.svg';
 import manaLogo from '../../public/img/assets/mana.svg';
 import maticLogo from '../../public/img/assets/matic.svg';
 import mcoLogo from '../../public/img/assets/mco.svg';
+import mdaLogo from '../../public/img/assets/mda.svg';
 import mkrLogo from '../../public/img/assets/mkr.svg';
 import mlnLogo from '../../public/img/assets/mln.svg';
+import mspLogo from '../../public/img/assets/msp.svg';
+import mtlLogo from '../../public/img/assets/mtl.svg';
+import mybLogo from '../../public/img/assets/myb.svg';
 import nexoLogo from '../../public/img/assets/nexo.svg';
+import ngcLogo from '../../public/img/assets/ngc.svg';
+import nmrLogo from '../../public/img/assets/nmr.svg';
+import ocnLogo from '../../public/img/assets/ocn.svg';
 import omgLogo from '../../public/img/assets/omg.svg';
 import payLogo from '../../public/img/assets/pay.svg';
 import poeLogo from '../../public/img/assets/poe.svg';
+import polyLogo from '../../public/img/assets/poly.svg';
+import powrLogo from '../../public/img/assets/powr.svg';
+import pptLogo from '../../public/img/assets/ppt.svg';
+import proLogo from '../../public/img/assets/pro.svg';
+import qashLogo from '../../public/img/assets/qash.svg';
 import qntLogo from '../../public/img/assets/qnt.svg';
+import qspLogo from '../../public/img/assets/qsp.svg';
+import rcnLogo from '../../public/img/assets/rcn.svg';
+import rdnLogo from '../../public/img/assets/rdn.svg';
 import renLogo from '../../public/img/assets/ren.svg';
 import repLogo from '../../public/img/assets/rep.svg';
 import reqLogo from '../../public/img/assets/req.svg';
 import rlcLogo from '../../public/img/assets/rlc.svg';
+import rLogo from '../../public/img/assets/r.svg';
+import ruffLogo from '../../public/img/assets/ruff.svg';
 import saiLogo from '../../public/img/assets/sai.svg';
+import saltLogo from '../../public/img/assets/salt.svg';
+import sanLogo from '../../public/img/assets/san.svg';
+import snmLogo from '../../public/img/assets/snm.svg';
 import sntLogo from '../../public/img/assets/snt.svg';
 import snxLogo from '../../public/img/assets/snx.svg';
 import spankLogo from '../../public/img/assets/spank.svg';
 import storjLogo from '../../public/img/assets/storj.svg';
+import stormLogo from '../../public/img/assets/storm.svg';
+import subLogo from '../../public/img/assets/sub.svg';
 import tknLogo from '../../public/img/assets/tkn.svg';
 import tntLogo from '../../public/img/assets/tnt.svg';
+import trstLogo from '../../public/img/assets/trst.svg';
 import tusdLogo from '../../public/img/assets/tusd.svg';
 import usdcLogo from '../../public/img/assets/usdc.svg';
 import usdtLogo from '../../public/img/assets/usdt.svg';
+import veriLogo from '../../public/img/assets/veri.svg';
+import waxLogo from '../../public/img/assets/wax.svg';
 import wbtcLogo from '../../public/img/assets/wbtc.svg';
 import wethLogo from '../../public/img/assets/weth.svg';
+import wtcLogo from '../../public/img/assets/wtc.svg';
+import zilLogo from '../../public/img/assets/zil.svg';
 import zrxLogo from '../../public/img/assets/zrx.svg';
 
 import melonLogo from '../../public/img/protocols/melon.svg';
@@ -94,54 +142,102 @@ import tlsLogo from '../../public/img/sets/social/tls.png';
 class AssetLoader {
 	static loadAssetLogo(assetId) {
 		const logoMap = {
+			'adt': adtLogo,
 			'ae': aeLogo,
+			'amb': ambLogo,
 			'ant': antLogo,
 			'ast': astLogo,
 			'bat': batLogo,
 			'bf': bfLogo,
+			'blz': blzLogo,
 			'bnb': bnbLogo,
 			'bnt': bntLogo,
+			'brd': brdLogo,
 			'btm': btmLogo,
+			'btu': btuLogo,
+			'cnn': cnnLogo,
+			'cofi': cofiLogo,
+			'crpt': crptLogo,
 			'cvc': cvcLogo,
 			'dai': daiLogo,
+			'data': dataLogo,
+			'dent': dentLogo,
 			'dgd': dgdLogo,
 			'dgx': dgxLogo,
+			'drgn': drgnLogo,
+			'edo': edoLogo,
+			'elf': elfLogo,
 			'eng': engLogo,
 			'enj': enjLogo,
 			'eth': ethLogo,
+			'ethos': ethosLogo,
+			'evx': evxLogo,
+			'fun': funLogo,
 			'gno': gnoLogo,
 			'gnt': gntLogo,
+			'gto': gtoLogo,
 			'ht': htLogo,
+			'int': intLogo,
+			'iotx': iotxLogo,
+			'kick': kickLogo,
 			'knc': kncLogo,
+			'lend': lendLogo,
 			'link': linkLogo,
 			'loom': loomLogo,
 			'lrc': lrcLogo,
 			'mana': manaLogo,
 			'matic': maticLogo,
 			'mco': mcoLogo,
+			'mda': mdaLogo,
 			'mkr': mkrLogo,
 			'mln': mlnLogo,
+			'msp': mspLogo,
+			'mtl': mtlLogo,
+			'myb': mybLogo,
 			'nexo': nexoLogo,
+			'ngc': ngcLogo,
+			'nmr': nmrLogo,
+			'ocn': ocnLogo,
 			'omg': omgLogo,
 			'pay': payLogo,
 			'poe': poeLogo,
+			'poly': polyLogo,
+			'powr': powrLogo,
+			'ppt': pptLogo,
+			'pro': proLogo,
+			'qash': qashLogo,
 			'qnt': qntLogo,
+			'qsp': qspLogo,
+			'r': rLogo,
+			'rcn': rcnLogo,
+			'rdn': rdnLogo,
 			'ren': renLogo,
 			'rep': repLogo,
 			'req': reqLogo,
 			'rlc': rlcLogo,
+			'ruff': ruffLogo,
 			'sai': saiLogo,
+			'salt': saltLogo,
+			'san': sanLogo,
+			'snm': snmLogo,
 			'snt': sntLogo,
 			'snx': snxLogo,
 			'spank': spankLogo,
 			'storj': storjLogo,
+			'storm': stormLogo,
+			'sub': subLogo,
 			'tkn': tknLogo,
 			'tnt': tntLogo,
+			'trst': trstLogo,
 			'tusd': tusdLogo,
 			'usdc': usdcLogo,
 			'usdt': usdtLogo,
+			'veri': veriLogo,
+			'wax': waxLogo,
 			'wbtc': wbtcLogo,
 			'weth': wethLogo,
+			'wtc': wtcLogo,
+			'zil': zilLogo,
 			'zrx': zrxLogo,
 		};
 		return logoMap[assetId];
