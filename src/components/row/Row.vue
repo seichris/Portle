@@ -9,7 +9,7 @@
 		<div class="details">
 			<div class="title sparse">
 				<div>{{ title }}</div>
-				<div>{{ formatMoney(price) }}/</div>
+				<div>{{ subtitle }} </div>
 			</div>
 			<div class="amount sparse">
 				<div>{{ formatAmount(amount) }} {{ ticker }}</div>
@@ -44,6 +44,10 @@ export default {
 			default: '',
 		},
 		title: {
+			type: String,
+			default: '',
+		},
+		subtitle: {
 			type: String,
 			default: '',
 		},
