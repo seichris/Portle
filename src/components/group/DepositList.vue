@@ -21,6 +21,7 @@
 				:asset-id="deposit.assetId"
 				:protocol-id="deposit.protocolId"
 				:price="deposit.price"
+				:rate="deposit.rate"
 			/>
 		</div>
 	</div>
