@@ -5,6 +5,7 @@
 			:ticker="ticker"
 			:wallet-id="walletId"
 			:title="title"
+			:subtitle="subtitle"
 			:price="price"
 		/>
 	</router-link>
@@ -44,6 +45,10 @@ export default {
 		title() {
 			const assetTitle = tokens[this.assetId];
 			return assetTitle;
+		},
+		subtitle() {
+			const priceString = Formatter.formatMoney(this.price);
+			return `${priceString}/`;
 		},
 		ticker() {
 			return Formatter.formatAsset(this.assetId);
