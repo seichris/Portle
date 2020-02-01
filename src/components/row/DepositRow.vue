@@ -5,6 +5,7 @@
 			:ticker="ticker"
 			:wallet-id="walletId"
 			:title="title"
+			:subtitle="subtitle"
 			:price="price"
 		/>
 	</router-link>
@@ -41,10 +42,17 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		rate: {
+			type: String,
+			default: '0',
+		},
 	},
 	computed: {
 		title() {
 			return Formatter.formatProtocol(this.protocolId);
+		},
+		subtitle() {
+			return Formatter.formatRate(this.rate);
 		},
 		ticker() {
 			return Formatter.formatAsset(this.assetId);
