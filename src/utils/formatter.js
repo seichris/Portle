@@ -65,7 +65,9 @@ class Formatter {
 
 	static formatUniswapPool(poolId) {
 		const assets = poolId.split('_');
-		return `(${assets[0].toUpperCase()} + ${assets[1].toUpperCase()})`;
+		const tokenAsset = tickers[assets[0]];
+		const etherAsset = tickers[assets[1]];
+		return `(${tokenAsset} + ${etherAsset})`;
 	}
 
 	static formatSet(setId) {
