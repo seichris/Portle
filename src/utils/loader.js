@@ -1011,6 +1011,7 @@ function getAssetId(rawAddress) {
 	}
 	const addressMap = {
 		'0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE': 'eth',
+		'0x000000000000000000000000000000000000000E': 'eth',
 		'0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F': 'snx',
 		'0x57Ab1ec28D129707052df4dF418D58a2D46d5f51': 'susd',
 	};
