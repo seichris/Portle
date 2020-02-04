@@ -96,6 +96,7 @@ class Formatter {
 		};
 		const socialSets = {
 			'bbb': 'BBB',
+			'bbe': 'BBE',
 			'btcmoon': 'BTCMOON',
 			'btcmoonx': 'BTCMOONX',
 			'btcusdcrsi': 'BTCUSDCRSI',
@@ -144,6 +145,7 @@ class Formatter {
 		};
 		const socialSets = {
 			'bbb': 'BullBearBitcoin Set',
+			'bbe': 'BullBearEthereum Set',
 			'btcmoon': 'BTC Moonshot Set',
 			'btcmoonx': 'BTC Moonshot X Set',
 			'btcusdcrsi': 'WBTC USDC RSI Set',

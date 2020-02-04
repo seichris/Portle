@@ -121,6 +121,7 @@ import stbtcdaiLogo from '../../public/img/sets/stbtcdai.svg';
 import stethdaiLogo from '../../public/img/sets/stethdai.svg';
 
 import bbbLogo from '../../public/img/sets/social/bbb.png';
+import bbeLogo from '../../public/img/sets/social/bbe.png';
 import btcmoonLogo from '../../public/img/sets/social/btcmoon.png';
 import btcmoonxLogo from '../../public/img/sets/social/btcmoonx.png';
 import btcusdcrsiLogo from '../../public/img/sets/social/btcusdcrsi.png';
@@ -276,6 +277,7 @@ class AssetLoader {
 		};
 		const socialLogoMap = {
 			'bbb': bbbLogo,
+			'bbe': bbeLogo,
 			'btcmoon': btcmoonLogo,
 			'btcmoonx': btcmoonxLogo,
 			'btcusdcrsi': btcusdcrsiLogo,
