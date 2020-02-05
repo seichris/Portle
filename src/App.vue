@@ -39,7 +39,6 @@
 import favicon from '../public/favicon.ico';
 // eslint-disable-next-line no-unused-vars
 import card from '../public/img/card.png';
-import logo from '../public/img/logo.svg';
 
 export default {
 	methods: {
