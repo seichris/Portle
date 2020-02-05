@@ -9,6 +9,7 @@ import erc20Abi from '../data/abi/erc20.json';
 
 import tokenAddresses from '../data/addresses.json';
 import tokenDecimals from '../data/decimals.json';
+import tokenized from '../data/tokenized.json';
 
 class Loader {
 	static async loadWallets(addresses) {
@@ -643,6 +644,9 @@ async function fetchAssets(addresses) {
 			}
 			const assetId = getAssetId(assetAddress);
 			if (!assetId) {
+				continue;
+			}
+			if (tokenized.deposits.includes(assetId)) {
 				continue;
 			}
 			const balance = tokenData.amount;
