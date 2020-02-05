@@ -42,11 +42,6 @@ import card from '../public/img/card.png';
 import logo from '../public/img/logo.svg';
 
 export default {
-	data() {
-		return {
-			copied: false,
-		};
-	},
 	computed: {
 		logo() {
 			return logo;
