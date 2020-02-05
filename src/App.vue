@@ -42,11 +42,6 @@ import card from '../public/img/card.png';
 import logo from '../public/img/logo.svg';
 
 export default {
-	computed: {
-		logo() {
-			return logo;
-		},
-	},
 	methods: {
 		showNavigation() {
 			const path = this.$route.path;
