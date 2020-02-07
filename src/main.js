@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 
 import App from './App.vue';
 
@@ -13,6 +14,7 @@ import Deposit from './pages/view/Deposit.vue';
 import Investment from './pages/view/Investment.vue';
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 const routes = [
 	{ path: '/login', component: Login },
@@ -30,8 +32,36 @@ const router = new VueRouter({
 	routes,
 });
 
+const store = new Vuex.Store({
+	state: {
+		wallets: [],
+		components: {},
+		prices: {},
+		rates: {},
+	},
+	mutations: {
+		setWallets(state, wallets) {
+			state.wallets = wallets;
+		},
+		setComponents(state, components) {
+			state.components = components;
+		},
+		setPrices(state, prices) {
+			state.prices = prices;
+		},
+		setRates(state, rates) {
+			state.rates = rates;
+		},
+		removeWallet(state, wallet) {
+			const index = state.wallets.indexOf(wallet);
+			state.wallets.splice(index, 1);
+		},
+	},
+});
+
 new Vue({
 	router,
+	store,
 	el: '#app',
 	render: h => h(App),
 });
