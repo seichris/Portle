@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import Balance from '../utils/balance.js';
 import Formatter from '../utils/formatter.js';
 import Loader from '../utils/loader.js';
@@ -82,14 +84,6 @@ export default {
 		DepositList,
 		InvestmentList,
 		WalletList,
-	},
-	data() {
-		return {
-			wallets: [],
-			components: {},
-			prices: {},
-			rates: {},
-		};
 	},
 	computed: {
 		assets() {
@@ -113,6 +107,12 @@ export default {
 			const balance = Balance.getInvestments(this.investments, this.components, this.prices);
 			return balance.toString();
 		},
+		...mapState([
+			'wallets',
+			'prices',
+			'rates',
+			'components',
+		]),
 	},
 	async mounted() {
 		const walletList = Storage.getWalletList();
@@ -120,19 +120,23 @@ export default {
 			this.$router.push('/login');
 			return;
 		}
-		this.wallets = walletList.map(({address}) => {
-			return {address};
-		});
-		const addresses = walletList.map(wallet => wallet.address);
-		const {wallets, prices, rates, components} = await Loader.loadWallets(addresses);
-		this.wallets = wallets;
-		this.prices = prices;
-		this.rates = rates;
-		this.components = components;
+		this._load(walletList);
 	},
 	methods: {
 		formatMoney(moneyString) {
 			return Formatter.formatMoney(moneyString);
+		},
+		async _load(walletList) {
+			const addresses = walletList.map(wallet => wallet.address);
+			const savedWallets = this.$store.state.wallets;
+			if (addresses.length == savedWallets.length) {
+				return;
+			}
+			const {wallets, prices, rates, components} = await Loader.loadWallets(addresses);
+			this.$store.commit('setWallets', wallets);
+			this.$store.commit('setPrices', prices);
+			this.$store.commit('setRates', rates);
+			this.$store.commit('setComponents', components);
 		},
 	},
 };

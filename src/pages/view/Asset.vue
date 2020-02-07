@@ -39,6 +39,7 @@
 
 <script>
 import BigNumber from 'bignumber.js';
+import { mapState } from 'vuex';
 
 import Converter from '../../utils/converter.js';
 import Formatter from '../../utils/formatter.js';
@@ -60,10 +61,6 @@ export default {
 		return {
 			address: '',
 			assetId: '',
-			wallets: [],
-			components: {},
-			prices: {},
-			rates: {},
 		};
 	},
 	computed: {
@@ -110,6 +107,12 @@ export default {
 		walletId() {
 			return this.wallets.findIndex(wallet => wallet.address == this.address);
 		},
+		...mapState([
+			'wallets',
+			'prices',
+			'rates',
+			'components',
+		]),
 	},
 	async mounted() {
 		const walletList = Storage.getWalletList();
@@ -119,16 +122,7 @@ export default {
 		}
 		this.address = this.$route.params.wallet;
 		this.assetId = this.$route.params.assetId;
-
-		this.wallets = walletList.map(({address}) => {
-			return {address};
-		});
-		const addresses = walletList.map(wallet => wallet.address);
-		const {wallets, prices, rates, components} = await Loader.loadWallets(addresses);
-		this.wallets = wallets;
-		this.prices = prices;
-		this.rates = rates;
-		this.components = components;
+		this._load(walletList);
 	},
 	methods: {
 		formatAsset(assetId) {
@@ -139,6 +133,18 @@ export default {
 		},
 		formatMoney(priceString) {
 			return Formatter.formatMoney(priceString);
+		},
+		async _load(walletList) {
+			const addresses = walletList.map(wallet => wallet.address);
+			const savedWallets = this.$store.state.wallets;
+			if (addresses.length == savedWallets.length) {
+				return;
+			}
+			const {wallets, prices, rates, components} = await Loader.loadWallets(addresses);
+			this.$store.commit('setWallets', wallets);
+			this.$store.commit('setPrices', prices);
+			this.$store.commit('setRates', rates);
+			this.$store.commit('setComponents', components);
 		},
 	},
 };

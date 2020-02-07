@@ -160,10 +160,9 @@ export default {
 		removeWallet(wallet) {
 			const walletIndex = this.wallets.indexOf(wallet);
 			Storage.removeWallet(wallet);
+			this.$store.commit('removeWallet', wallet);
 			if (walletIndex == this.selectedWallet) {
 				this.$router.push('/');
-			} else {
-				this.$router.go();
 			}
 		},
 	},
