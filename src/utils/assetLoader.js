@@ -125,9 +125,11 @@ import bbeLogo from '../../public/img/sets/social/bbe.png';
 import btcmoonLogo from '../../public/img/sets/social/btcmoon.png';
 import btcmoonxLogo from '../../public/img/sets/social/btcmoonx.png';
 import btcusdcrsiLogo from '../../public/img/sets/social/btcusdcrsi.png';
+import btcusdctaLogo from '../../public/img/sets/social/btcusdcta.png';
 import eth10kLogo from '../../public/img/sets/social/eth10k.png';
 import ethmoonxLogo from '../../public/img/sets/social/ethmoonx.png';
 import ethusdadl4Logo from '../../public/img/sets/social/ethusdadl4.png';
+import ethusdctaLogo from '../../public/img/sets/social/ethusdcta.png';
 import evolLogo from '../../public/img/sets/social/evol.png';
 import flexbtcLogo from '../../public/img/sets/social/flexbtc.png';
 import flexethbtcLogo from '../../public/img/sets/social/flexethbtc.png';
@@ -281,9 +283,11 @@ class AssetLoader {
 			'btcmoon': btcmoonLogo,
 			'btcmoonx': btcmoonxLogo,
 			'btcusdcrsi': btcusdcrsiLogo,
+			'btcusdcta': btcusdctaLogo,
 			'eth10k': eth10kLogo,
 			'ethmoonx': ethmoonxLogo,
 			'ethusdadl4': ethusdadl4Logo,
+			'ethusdcta': ethusdctaLogo,
 			'evol': evolLogo,
 			'flexbtc': flexbtcLogo,
 			'flexeth': flexethLogo,
