@@ -3,11 +3,12 @@ import BigNumber from 'bignumber.js';
 import Converter from './converter.js';
 
 class Balance {
-	static getTotal(assets, deposits, investments, components, prices) {
+	static getTotal(assets, deposits, investments, stakes, components, prices) {
 		const assetValue = this.getAssets(assets, prices);
 		const depositValue = this.getDeposits(deposits, prices);
 		const investmentValue = this.getInvestments(investments, components, prices);
-		const value = assetValue.plus(depositValue).plus(investmentValue);
+		const stakeValue = this.getStakes(stakes, prices);
+		const value = assetValue.plus(depositValue).plus(investmentValue).plus(stakeValue);
 		return value;
 	}
 
@@ -68,6 +69,22 @@ class Balance {
 			investmentValue = investmentValue.plus(value);
 		}
 		return investmentValue;
+	}
+
+	static getStakes(stakes, prices) {
+		let stakeValue = new BigNumber(0);
+		for (const stake of stakes) {
+			const { assetId, balance } = stake;
+			const price = prices[assetId];
+			if (!price) {
+				continue;
+			}
+			const amount = Converter.toAmount(balance, assetId);
+			const amountNumber = new BigNumber(amount);
+			const value = amountNumber.times(price);
+			stakeValue = stakeValue.plus(value);
+		}
+		return stakeValue;
 	}
 }
 

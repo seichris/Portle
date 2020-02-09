@@ -105,6 +105,9 @@ export default {
 		investments() {
 			return Wallets.getInvestments(this.wallets);			
 		},
+		stakes() {
+			return Wallets.getStakes(this.wallets);			
+		},
 		totalBalance() {
 			if (this.wallets.length == 0) {
 				return '0';
@@ -113,6 +116,7 @@ export default {
 				this.assets,
 				this.deposits,
 				this.investments,
+				this.stakes,
 				this.components,
 				this.prices
 			);
@@ -133,10 +137,13 @@ export default {
 				.filter(deposit => deposit.walletId == walletId);
 			const walletInvestments = this.investments
 				.filter(investment => investment.walletId == walletId);
+			const walletStakes = this.stakes
+				.filter(stake => stake.walletId == walletId);
 			const walletBalance = Balance.getTotal(
 				walletAssets,
 				walletDeposits,
 				walletInvestments,
+				walletStakes,
 				this.components,
 				this.prices
 			);
