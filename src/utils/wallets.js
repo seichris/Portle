@@ -75,6 +75,33 @@ class Wallets {
 		}
 		return investments;
 	}
+
+	static getStakes(wallets) {
+		const stakes = [];
+		if (wallets.length == 0) {
+			return stakes;
+		}
+		for (const walletIndex in wallets) {
+			const walletId = parseInt(walletIndex);
+			const wallet = wallets[walletId];
+			for (const assetId in wallet.stakes) {
+				const assetBalance = wallet.stakes[assetId];
+				for (const poolId in assetBalance) {
+					const balance = assetBalance[poolId];
+					if (balance != '0') {
+						const investment = {
+							walletId,
+							assetId,
+							poolId,
+							balance,
+						};
+						stakes.push(investment);
+					}
+				}
+			}
+		}
+		return stakes;
+	}
 }
 
 export default Wallets;
