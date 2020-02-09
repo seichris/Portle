@@ -66,7 +66,7 @@
 									{{ formatAmount(component.amount) }} {{ formatTicker(component.assetId) }}
 								</div>
 								<div class="component-name">
-									{{ component.assetName }}
+									{{ formatAsset(component.assetId) }}
 								</div>
 							</div>
 							<div class="component-value">
@@ -88,8 +88,6 @@ import Converter from '../../utils/converter.js';
 import Formatter from '../../utils/formatter.js';
 import Loader from '../../utils/loader.js';
 import Storage from '../../utils/storage.js';
-
-import tokens from '../../data/tokens.json';
 
 import SetIcon from '../../components/icon/SetIcon.vue';
 import UniswapIcon from '../../components/icon/UniswapIcon.vue';
@@ -145,7 +143,6 @@ export default {
 			const investmentAmount = Converter.toAmount(this.balance, 'eth');
 			for (const component of components) {
 				const { amount, assetId } = component;
-				const assetName = tokens[assetId];
 				const assetPrice = this.prices[assetId];
 				if (!assetPrice) {
 					return [];
@@ -157,7 +154,6 @@ export default {
 				const investmentComponent = {
 					amount: componentAmount,
 					assetId,
-					assetName,
 					value,
 				};
 				investmentComponents.push(investmentComponent);
@@ -211,6 +207,9 @@ export default {
 			const componentAmountNumber = new BigNumber(componentAmount);
 			const investmentAmount = this.investment.amount;
 			return componentAmountNumber.times(investmentAmount);
+		},
+		formatAsset(assetId) {
+			return Formatter.formatAsset(assetId);
 		},
 		formatTicker(assetId) {
 			return Formatter.formatTicker(assetId);

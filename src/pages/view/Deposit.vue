@@ -31,7 +31,7 @@
 				</div>
 				<div id="asset-details">
 					<div>
-						{{ deposit.assetName }}
+						{{ formatAsset(deposit.assetId) }}
 					</div>
 					<div id="price">
 						{{ formatMoney(deposit.price) }}/
@@ -54,8 +54,6 @@ import Formatter from '../../utils/formatter.js';
 import Loader from '../../utils/loader.js';
 import Storage from '../../utils/storage.js';
 
-import tokens from '../../data/tokens.json';
-
 import AssetIcon from '../../components/icon/AssetIcon.vue';
 import WalletList from '../../components/group/WalletList.vue';
 
@@ -76,7 +74,6 @@ export default {
 			if (this.balance == 0) {
 				return;
 			}
-			const assetName = tokens[this.assetId];
 			const assetId = this.assetId;
 			const protocolId = this.protocolId;
 			const rate = this.rate;
@@ -91,7 +88,6 @@ export default {
 			const asset = {
 				protocolId,
 				assetId,
-				assetName,
 				amount,
 				rate,
 				price,
@@ -143,6 +139,9 @@ export default {
 		this._load(walletList);
 	},
 	methods: {
+		formatAsset(assetId) {
+			return Formatter.formatAsset(assetId);
+		},
 		formatTicker(assetId) {
 			return Formatter.formatTicker(assetId);
 		},
