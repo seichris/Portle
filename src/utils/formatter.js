@@ -171,6 +171,21 @@ class Formatter {
 		const sets = {...roboSets, ...socialSets};
 		return sets[setId];
 	}
+
+	static formatPool(assetId, poolId) {
+		if (assetId == 'zrx') {
+			const zrxPoolMap = {
+				'2': 'Rigo ZRX Staker',
+				'6': 'Zaidan\'s War Chest',
+				'12': 'DUST | pool',
+				'16': 'Veridex',
+				'20': 'Prycto',
+			};
+			const defaultName = `pool ${poolId}`;
+			const poolName = zrxPoolMap[poolId] || defaultName;
+			return poolName;
+		}
+	}
 }
 
 export default Formatter;
