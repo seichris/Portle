@@ -50,7 +50,6 @@ import Converter from '../../utils/converter.js';
 import Formatter from '../../utils/formatter.js';
 import Loader from '../../utils/loader.js';
 import Storage from '../../utils/storage.js';
-import Wallets from '../../utils/wallets.js';
 
 import tokens from '../../data/tokens.json';
 
@@ -105,15 +104,6 @@ export default {
 				return 0;
 			}
 			return balance;
-		},
-		assets() {
-			return Wallets.getAssets(this.wallets);
-		},
-		deposits() {
-			return Wallets.getDeposits(this.wallets);
-		},
-		investments() {
-			return Wallets.getInvestments(this.wallets);
 		},
 		walletId() {
 			return this.wallets.findIndex(wallet => wallet.address == this.address);
