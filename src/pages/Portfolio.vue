@@ -60,6 +60,23 @@
 					:prices="prices"
 				/>
 			</div>
+			<div
+				v-if="stakes.length > 0"
+				class="category"
+			>
+				<div class="category-header">
+					<h2 class="category-title">
+						Stakes
+					</h2>
+					<div class="category-value">
+						{{ formatMoney(stakeBalance) }}
+					</div>
+				</div>
+				<StakeList
+					:stakes="stakes"
+					:prices="prices"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -76,6 +93,7 @@ import Wallets from '../utils/wallets.js';
 import AssetList from '../components/group/AssetList.vue';
 import DepositList from '../components/group/DepositList.vue';
 import InvestmentList from '../components/group/InvestmentList.vue';
+import StakeList from '../components/group/StakeList.vue';
 import WalletList from '../components/group/WalletList.vue';
 
 export default {
@@ -83,6 +101,7 @@ export default {
 		AssetList,
 		DepositList,
 		InvestmentList,
+		StakeList,
 		WalletList,
 	},
 	computed: {
@@ -95,6 +114,9 @@ export default {
 		investments() {
 			return Wallets.getInvestments(this.wallets);
 		},
+		stakes() {
+			return Wallets.getStakes(this.wallets);
+		},
 		assetBalance() {
 			const balance = Balance.getAssets(this.assets, this.prices);
 			return balance.toString();
@@ -105,6 +127,10 @@ export default {
 		},
 		investmentBalance() {
 			const balance = Balance.getInvestments(this.investments, this.components, this.prices);
+			return balance.toString();
+		},
+		stakeBalance() {
+			const balance = Balance.getStakes(this.stakes, this.prices);
 			return balance.toString();
 		},
 		...mapState([
