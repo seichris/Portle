@@ -4,10 +4,10 @@
 			<InvestmentCard
 				v-for="investment in sortedInvestments"
 				:key="investment.walletId + '-' + investment.protocolId + '-' + investment.id"
-				:amount="investment.amount"
-				:investment-id="investment.id"
 				:wallet-id="investment.walletId"
 				:protocol-id="investment.protocolId"
+				:investment-id="investment.id"
+				:amount="investment.amount"
 				:price="investment.price"
 			/>
 		</div>
@@ -16,9 +16,9 @@
 				v-for="investment in sortedInvestments"
 				:key="investment.walletId + '-' + investment.protocolId + '-' + investment.id"
 				:wallet-id="investment.walletId"
-				:amount="investment.amount"
-				:investment-id="investment.id"
 				:protocol-id="investment.protocolId"
+				:investment-id="investment.id"
+				:amount="investment.amount"
 				:price="investment.price"
 			/>
 		</div>

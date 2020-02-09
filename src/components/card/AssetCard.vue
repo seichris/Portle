@@ -4,9 +4,9 @@
 		:to="`/wallet/${walletAddress}/asset/${assetId}`"
 	>
 		<Card
+			:wallet-id="walletId"
 			:amount="amount"
 			:ticker="ticker"
-			:wallet-id="walletId"
 			:title="title"
 			:price="price"
 		/>
@@ -32,17 +32,17 @@ export default {
 		Card,
 	},
 	props: {
-		amount: {
-			type: String,
-			default: '0',
+		walletId: {
+			type: Number,
+			default: 0,
 		},
 		assetId: {
 			type: String,
 			default: '',
 		},
-		walletId: {
-			type: Number,
-			default: 0,
+		amount: {
+			type: String,
+			default: '0',
 		},
 		price: {
 			type: Number,

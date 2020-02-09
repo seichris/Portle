@@ -4,9 +4,9 @@
 		:to="`/wallet/${walletAddress}/deposit/${protocolId}/${assetId}`"
 	>
 		<Card
+			:wallet-id="walletId"
 			:amount="amount"
 			:ticker="ticker"
-			:wallet-id="walletId"
 			:title="title"
 			:subtitle="rate"
 			:price="price"
@@ -31,14 +31,6 @@ export default {
 		Card,
 	},
 	props: {
-		amount: {
-			type: String,
-			default: '0',
-		},
-		assetId: {
-			type: String,
-			default: '',
-		},
 		walletId: {
 			type: Number,
 			default: 0,
@@ -47,13 +39,21 @@ export default {
 			type: String,
 			default: '',
 		},
-		rate: {
+		assetId: {
+			type: String,
+			default: '',
+		},
+		amount: {
 			type: String,
 			default: '0',
 		},
 		price: {
 			type: Number,
 			default: 0,
+		},
+		rate: {
+			type: String,
+			default: '0',
 		},
 	},
 	computed: {

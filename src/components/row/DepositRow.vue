@@ -1,9 +1,9 @@
 <template>
 	<router-link :to="`/wallet/${walletAddress}/deposit/${protocolId}/${assetId}`">
 		<Row
+			:wallet-id="walletId"
 			:amount="amount"
 			:ticker="ticker"
-			:wallet-id="walletId"
 			:title="title"
 			:subtitle="subtitle"
 			:price="price"
@@ -22,21 +22,21 @@ export default {
 		Row,
 	},
 	props: {
-		amount: {
-			type: String,
-			default: '0',
-		},
-		assetId: {
-			type: String,
-			default: '',
+		walletId: {
+			type: Number,
+			default: 0,
 		},
 		protocolId: {
 			type: String,
 			default: '',
 		},
-		walletId: {
-			type: Number,
-			default: 0,
+		assetId: {
+			type: String,
+			default: '',
+		},
+		amount: {
+			type: String,
+			default: '0',
 		},
 		price: {
 			type: Number,

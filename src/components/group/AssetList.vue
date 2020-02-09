@@ -4,9 +4,9 @@
 			<AssetCard
 				v-for="asset in sortedAssets"
 				:key="asset.walletId + '-' + asset.id"
-				:amount="asset.amount"
-				:asset-id="asset.id"
 				:wallet-id="asset.walletId"
+				:asset-id="asset.id"
+				:amount="asset.amount"
 				:price="asset.price"
 			/>
 		</div>
@@ -15,8 +15,8 @@
 				v-for="asset in sortedAssets"
 				:key="asset.walletId + '-' + asset.id"
 				:wallet-id="asset.walletId"
-				:amount="asset.amount"
 				:asset-id="asset.id"
+				:amount="asset.amount"
 				:price="asset.price"
 			/>
 		</div>

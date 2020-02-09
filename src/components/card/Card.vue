@@ -34,6 +34,10 @@ export default {
 		WalletIcon,
 	},
 	props: {
+		walletId: {
+			type: Number,
+			default: 0,
+		},
 		amount: {
 			type: String,
 			default: '0',
@@ -41,10 +45,6 @@ export default {
 		ticker: {
 			type: String,
 			default: '',
-		},
-		walletId: {
-			type: Number,
-			default: 0,
 		},
 		title: {
 			type: String,

@@ -4,12 +4,12 @@
 			<DepositCard
 				v-for="deposit in sortedDeposits"
 				:key="deposit.walletId + '-' + deposit.protocolId + '-' + deposit.assetId"
-				:amount="deposit.amount"
-				:asset-id="deposit.assetId"
 				:wallet-id="deposit.walletId"
 				:protocol-id="deposit.protocolId"
-				:rate="deposit.rate"
+				:asset-id="deposit.assetId"
+				:amount="deposit.amount"
 				:price="deposit.price"
+				:rate="deposit.rate"
 			/>
 		</div>
 		<div id="table">
@@ -17,9 +17,9 @@
 				v-for="deposit in sortedDeposits"
 				:key="deposit.walletId + '-' + deposit.protocolId + '-' + deposit.assetId"
 				:wallet-id="deposit.walletId"
-				:amount="deposit.amount"
-				:asset-id="deposit.assetId"
 				:protocol-id="deposit.protocolId"
+				:asset-id="deposit.assetId"
+				:amount="deposit.amount"
 				:price="deposit.price"
 				:rate="deposit.rate"
 			/>
@@ -45,11 +45,11 @@ export default {
 			type: Array,
 			default: () => [],
 		},
-		rates: {
+		prices: {
 			type: Object,
 			default: () => {},
 		},
-		prices: {
+		rates: {
 			type: Object,
 			default: () => {},
 		},

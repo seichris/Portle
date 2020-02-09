@@ -4,9 +4,9 @@
 		:to="`/wallet/${walletAddress}/investment/${protocolId}/${investmentId}`"
 	>
 		<Card
+			:wallet-id="walletId"
 			:amount="amount"
 			:ticker="ticker"
-			:wallet-id="walletId"
 			:title="title"
 			:price="price"
 		/>
@@ -45,14 +45,6 @@ export default {
 		ProtocolIcon,
 	},
 	props: {
-		amount: {
-			type: String,
-			default: '0',
-		},
-		investmentId: {
-			type: String,
-			default: '',
-		},
 		walletId: {
 			type: Number,
 			default: 0,
@@ -60,6 +52,14 @@ export default {
 		protocolId: {
 			type: String,
 			default: '',
+		},
+		investmentId: {
+			type: String,
+			default: '',
+		},
+		amount: {
+			type: String,
+			default: '0',
 		},
 		price: {
 			type: Number,

@@ -4,10 +4,10 @@
 			<StakeCard
 				v-for="stake in sortedStakes"
 				:key="stake.walletId + '-' + stake.assetId + '-' + stake.poolId"
-				:amount="stake.amount"
-				:pool-id="stake.poolId"
 				:wallet-id="stake.walletId"
 				:asset-id="stake.assetId"
+				:pool-id="stake.poolId"
+				:amount="stake.amount"
 				:price="stake.price"
 			/>
 		</div>
@@ -15,10 +15,10 @@
 			<StakeRow
 				v-for="stake in sortedStakes"
 				:key="stake.walletId + '-' + stake.assetId + '-' + stake.poolId"
-				:amount="stake.amount"
+				:wallet-id="stake.walletId"
 				:asset-id="stake.assetId"
 				:pool-id="stake.poolId"
-				:wallet-id="stake.walletId"
+				:amount="stake.amount"
 				:price="stake.price"
 			/>
 		</div>
