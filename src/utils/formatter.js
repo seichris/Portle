@@ -1,4 +1,5 @@
 import tickers from '../data/tickers.json';
+import tokens from '../data/tokens.json';
 
 class Formatter {
 	static formatAddress(address) {
@@ -12,6 +13,11 @@ class Formatter {
 	static formatTicker(id) {
 		const ticker = tickers[id];
 		return ticker;
+	}
+
+	static formatAsset(id) {
+		const token = tokens[id];
+		return token;
 	}
 
 	static formatProtocol(protocolId) {
