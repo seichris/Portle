@@ -21,6 +21,7 @@ class Loader {
 			this.loadAssets(addresses),
 			this.loadDeposits(addresses),
 			this.loadInvestments(addresses),
+			this.loadStakes(addresses),
 		];
 		const data = await Promise.all(promises);
 
@@ -30,6 +31,7 @@ class Loader {
 			wallets[i].assets = data[0].assets[i];
 			wallets[i].deposits = data[1].deposits[i];
 			wallets[i].investments = data[2].investments[i];
+			wallets[i].stakes = data[3].stakes[i];
 		}
 		const rates = data[1].rates;
 		const components = data[2].components;
@@ -151,6 +153,25 @@ class Loader {
 		return {
 			investments,
 			components,
+		};
+	}
+
+	static async loadStakes(addresses) {
+		const stakes = addresses.map(() => {
+			return {};
+		});
+		const promises = [
+			this.loadZeroEx(addresses),
+		];
+		const stakeData = await Promise.all(promises);
+
+		const addressCount = addresses.length;
+		for (let i = 0; i < addressCount; i++) {
+			stakes[i].zrx = stakeData[0].stakes[i];
+		}
+
+		return {
+			stakes,
 		};
 	}
 
@@ -585,6 +606,35 @@ class Loader {
 			components,
 		};
 	}
+
+	static async loadZeroEx(addresses) {
+		const stakes = addresses.map(() => {
+			return {};
+		});
+		const addressCount = addresses.length;
+
+		const data = await fetchZeroEx(addresses);
+
+		for (let i = 0; i < addressCount; i++) {
+			const address = addresses[i];
+			const walletBalance = data[`user_${address}`];
+			if (!walletBalance) {
+				continue;
+			}
+			const walletStakes = walletBalance.stakes;
+			for (const walletStake of walletStakes) {
+				const stakePoolNumber = new BigNumber(walletStake.pool.id, 16);
+				const stakePool = stakePoolNumber.toString();
+				const stakeAmount = walletStake.amount;
+
+				stakes[i][stakePool] = stakeAmount;
+			}
+		}
+
+		return {
+			stakes,
+		};
+	}
 }
 
 async function fetchPrices(assets) {
@@ -980,6 +1030,35 @@ async function fetchMelon(addresses) {
 							}
 						}
 					}
+				}
+			}
+		`;})
+		.join('');
+	const query = `
+		query {
+			${addressQuery}
+		}`;
+	const opts = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ query }),
+	};
+	const response = await fetch(url, opts);
+	const json = await response.json();
+	const data = json.data;
+	return data;	
+}
+
+async function fetchZeroEx(addresses) {
+	const url = 'https://api.thegraph.com/subgraphs/name/destiner/zeroex-staking';
+	const addressQuery = addresses
+		.map(address => { return `
+			user_${address}: user(id: "${address}") {
+				stakes {
+					pool {
+						id
+					}
+					amount
 				}
 			}
 		`;})
