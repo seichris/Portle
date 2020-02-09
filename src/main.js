@@ -12,6 +12,7 @@ import Wallet from './pages/Wallet.vue';
 import Asset from './pages/view/Asset.vue';
 import Deposit from './pages/view/Deposit.vue';
 import Investment from './pages/view/Investment.vue';
+import Stake from './pages/view/Stake.vue';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -25,6 +26,7 @@ const routes = [
 	{ path: '/wallet/:wallet/asset/:assetId', component: Asset },
 	{ path: '/wallet/:wallet/deposit/:protocolId/:assetId', component: Deposit },
 	{ path: '/wallet/:wallet/investment/:protocolId/:investmentId', component: Investment },
+	{ path: '/wallet/:wallet/stake/:assetId/:poolId', component: Stake },
 ];
 
 const router = new VueRouter({
