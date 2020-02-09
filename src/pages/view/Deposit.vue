@@ -174,6 +174,16 @@ export default {
 			if (addresses.length == savedWallets.length) {
 				return;
 			}
+			const requiredWallets = [];
+			for (const address of addresses) {
+				const wallet = savedWallets.find(wallet => wallet.address == address);
+				if (wallet) {
+					requiredWallets.push(wallet);
+				} else {
+					requiredWallets.push({ address });
+				}
+			}
+			this.$store.commit('setWallets', requiredWallets);
 			const {wallets, prices, rates, components} = await Loader.loadWallets(addresses);
 			this.$store.commit('setWallets', wallets);
 			this.$store.commit('setPrices', prices);
