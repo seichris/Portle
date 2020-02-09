@@ -9,7 +9,7 @@ class Formatter {
 		return ellipsizedAddress;
 	}
 
-	static formatAsset(id) {
+	static formatTicker(id) {
 		const ticker = tickers[id];
 		return ticker;
 	}

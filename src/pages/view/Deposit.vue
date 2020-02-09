@@ -19,7 +19,7 @@
 				id="deposit-view"
 			>
 				<div id="amount">
-					{{ formatAmount(deposit.amount) }} {{ formatAsset(deposit.assetId) }}
+					{{ formatAmount(deposit.amount) }} {{ formatTicker(deposit.assetId) }}
 				</div>
 				<div id="protocol-details">
 					<div>
@@ -143,8 +143,8 @@ export default {
 		this._load(walletList);
 	},
 	methods: {
-		formatAsset(assetId) {
-			return Formatter.formatAsset(assetId);
+		formatTicker(assetId) {
+			return Formatter.formatTicker(assetId);
 		},
 		formatProtocol(protocolId) {
 			return Formatter.formatProtocol(protocolId);

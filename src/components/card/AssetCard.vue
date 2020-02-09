@@ -55,7 +55,7 @@ export default {
 			return assetTitle;
 		},
 		ticker() {
-			return Formatter.formatAsset(this.assetId);
+			return Formatter.formatTicker(this.assetId);
 		},
 		walletAddress() {
 			const walletList = Storage.getWalletList();

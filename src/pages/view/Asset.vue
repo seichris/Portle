@@ -19,7 +19,7 @@
 				id="asset-view"
 			>
 				<div id="amount">
-					{{ formatAmount(asset.amount) }} {{ formatAsset(asset.id) }}
+					{{ formatAmount(asset.amount) }} {{ formatTicker(asset.id) }}
 				</div>
 				<div id="details">
 					<div id="name">
@@ -115,8 +115,8 @@ export default {
 		this._load(walletList);
 	},
 	methods: {
-		formatAsset(assetId) {
-			return Formatter.formatAsset(assetId);
+		formatTicker(assetId) {
+			return Formatter.formatTicker(assetId);
 		},
 		formatAmount(amountString) {
 			return Formatter.formatAmount(amountString);

@@ -58,7 +58,7 @@ export default {
 	},
 	computed: {
 		ticker() {
-			return Formatter.formatAsset(this.assetId);	
+			return Formatter.formatTicker(this.assetId);	
 		},
 		title() {
 			return Formatter.formatProtocol(this.protocolId);

@@ -19,7 +19,7 @@
 				id="stake-view"
 			>
 				<div id="amount">
-					{{ formatAmount(stake.amount) }} {{ formatAsset(stake.assetId) }}
+					{{ formatAmount(stake.amount) }} {{ formatTicker(stake.assetId) }}
 				</div>
 				<div id="pool-details">
 					<div>
@@ -127,8 +127,8 @@ export default {
 		this._load(walletList);
 	},
 	methods: {
-		formatAsset(assetId) {
-			return Formatter.formatAsset(assetId);
+		formatTicker(assetId) {
+			return Formatter.formatTicker(assetId);
 		},
 		formatPool(assetId, poolId) {
 			return Formatter.formatPool(assetId, poolId);

@@ -63,7 +63,7 @@
 						<div class="component-details">
 							<div>
 								<div class="component-amount">
-									{{ formatAmount(component.amount) }} {{ formatAsset(component.assetId) }}
+									{{ formatAmount(component.amount) }} {{ formatTicker(component.assetId) }}
 								</div>
 								<div class="component-name">
 									{{ component.assetName }}
@@ -212,8 +212,8 @@ export default {
 			const investmentAmount = this.investment.amount;
 			return componentAmountNumber.times(investmentAmount);
 		},
-		formatAsset(assetId) {
-			return Formatter.formatAsset(assetId);
+		formatTicker(assetId) {
+			return Formatter.formatTicker(assetId);
 		},
 		formatInvestmentId(investment) {
 			if (investment.protocolId == 'uniswap') {
@@ -230,7 +230,7 @@ export default {
 		formatInvestmentName(investment) {
 			if (investment.protocolId == 'uniswap') {
 				const assets = this.investmentId.split('_');
-				return `${this.formatAsset(assets[0])}-${this.formatAsset(assets[1])} Uniswap pool`;
+				return `${this.formatTicker(assets[0])}-${this.formatTicker(assets[1])} Uniswap pool`;
 			}
 			if (investment.protocolId == 'tokensets') {
 				return Formatter.formatSetName(investment.id);

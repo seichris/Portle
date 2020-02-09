@@ -53,7 +53,7 @@ export default {
 	},
 	computed: {
 		ticker() {
-			return Formatter.formatAsset(this.assetId);	
+			return Formatter.formatTicker(this.assetId);	
 		},
 		title() {
 			return Formatter.formatPool(this.assetId, this.poolId);

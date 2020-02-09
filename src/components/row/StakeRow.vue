@@ -47,7 +47,7 @@ export default {
 			return Formatter.formatPool(this.assetId, this.poolId);
 		},
 		ticker() {
-			return Formatter.formatAsset(this.assetId);
+			return Formatter.formatTicker(this.assetId);
 		},
 		walletAddress() {
 			const walletList = Storage.getWalletList();
