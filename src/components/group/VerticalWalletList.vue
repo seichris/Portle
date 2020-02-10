@@ -104,16 +104,16 @@ export default {
 	},
 	computed: {
 		assets() {
-			return Wallets.getAssets(this.wallets);			
+			return Wallets.getAssets(this.wallets);
 		},
 		deposits() {
-			return Wallets.getDeposits(this.wallets);			
+			return Wallets.getDeposits(this.wallets);
 		},
 		investments() {
-			return Wallets.getInvestments(this.wallets);			
+			return Wallets.getInvestments(this.wallets);
 		},
 		stakes() {
-			return Wallets.getStakes(this.wallets);			
+			return Wallets.getStakes(this.wallets);
 		},
 		totalBalance() {
 			if (this.wallets.length == 0) {
@@ -190,8 +190,8 @@ export default {
 			a.click();
 			setTimeout(function() {
 				document.body.removeChild(a);
-				window.URL.revokeObjectURL(url);  
-			}, 0); 
+				window.URL.revokeObjectURL(url);
+			}, 0);
 		}
 	},
 };

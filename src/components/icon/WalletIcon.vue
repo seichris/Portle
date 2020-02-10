@@ -1,6 +1,6 @@
 <template>
 	<div
-		:class="{ 
+		:class="{
 			'id-0': walletId == 0,
 			'id-1': walletId == 1,
 			'id-2': walletId == 2,

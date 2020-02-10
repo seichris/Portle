@@ -642,7 +642,7 @@ async function fetchPrices(assets) {
 	const url = `https://api.portle.io/price?assets=${assetString}`;
 	const response = await fetch(url);
 	const prices = await response.json();
-	return prices; 
+	return prices;
 }
 
 async function fetchAssets(addresses) {
@@ -1008,7 +1008,7 @@ async function fetchTokenSets(addresses) {
 	const response = await fetch(url, opts);
 	const json = await response.json();
 	const data = json.data;
-	return data;	
+	return data;
 }
 
 async function fetchMelon(addresses) {
@@ -1046,7 +1046,7 @@ async function fetchMelon(addresses) {
 	const response = await fetch(url, opts);
 	const json = await response.json();
 	const data = json.data;
-	return data;	
+	return data;
 }
 
 async function fetchZeroEx(addresses) {
@@ -1075,7 +1075,7 @@ async function fetchZeroEx(addresses) {
 	const response = await fetch(url, opts);
 	const json = await response.json();
 	const data = json.data;
-	return data;	
+	return data;
 }
 
 function getProvider() {
