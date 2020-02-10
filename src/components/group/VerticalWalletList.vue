@@ -61,6 +61,9 @@
 				</div>
 			</router-link>
 		</div>
+		<button @click="exportAssets()">
+			Export
+		</button>
 	</div>
 </template>
 
@@ -72,6 +75,7 @@ import plusIcon from '../../../public/img/plus.svg';
 import WalletIcon from '../icon/WalletIcon.vue';
 
 import Balance from '../../utils/balance.js';
+import Exporter from '../../utils/exporter.js';
 import Formatter from '../../utils/formatter.js';
 import Storage from '../../utils/storage.js';
 import Wallets from '../../utils/wallets.js';
@@ -172,6 +176,23 @@ export default {
 				this.$router.push('/');
 			}
 		},
+		exportAssets() {
+			const data = Exporter.toCsv(this.wallets, this.prices);
+			this._saveFile(data, 'assets.csv', 'type : \'text/csv\'');
+		},
+		_saveFile(data, name, type) {
+			const file = new Blob([ data ], { type });
+			const a = document.createElement('a');
+			const url = URL.createObjectURL(file);
+			a.href = url;
+			a.download = name;
+			document.body.appendChild(a);
+			a.click();
+			setTimeout(function() {
+				document.body.removeChild(a);
+				window.URL.revokeObjectURL(url);  
+			}, 0); 
+		}
 	},
 };
 </script>
