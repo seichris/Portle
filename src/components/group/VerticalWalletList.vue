@@ -61,7 +61,7 @@
 				</div>
 			</router-link>
 		</div>
-		<button @click="export()">
+		<button @click="exportHoldings()">
 			Export
 		</button>
 	</div>
@@ -176,7 +176,7 @@ export default {
 				this.$router.push('/');
 			}
 		},
-		export() {
+		exportHoldings() {
 			const data = Exporter.toCsv(this.wallets, this.prices);
 			this._saveFile(data, 'holdings.csv', 'type : \'text/csv\'');
 		},
