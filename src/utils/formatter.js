@@ -181,6 +181,7 @@ class Formatter {
 	static formatPool(assetId, poolId) {
 		if (assetId == 'zrx') {
 			const zrxPoolMap = {
+				'0': 'Unstaked',
 				'2': 'Rigo ZRX Staker',
 				'6': 'Zaidan\'s War Chest',
 				'12': 'DUST | pool',
