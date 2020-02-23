@@ -178,7 +178,7 @@ export default {
 		},
 		export() {
 			const data = Exporter.toCsv(this.wallets, this.prices);
-			this._saveFile(data, 'assets.csv', 'type : \'text/csv\'');
+			this._saveFile(data, 'holdings.csv', 'type : \'text/csv\'');
 		},
 		_saveFile(data, name, type) {
 			const file = new Blob([ data ], { type });
