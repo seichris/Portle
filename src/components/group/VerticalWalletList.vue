@@ -61,7 +61,10 @@
 				</div>
 			</router-link>
 		</div>
-		<button @click="exportHoldings()">
+		<button
+			class="ghost"
+			@click="exportHoldings()"
+		>
 			Export
 		</button>
 	</div>
