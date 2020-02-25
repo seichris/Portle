@@ -126,6 +126,11 @@ button {
 	border-radius: 4px;
 }
 
+button.ghost {
+	background: none;
+	border: 1px solid var(--accent-color);
+}
+
 button.big {
 	padding: 0 1.5em;
 	font-size: 1em;
@@ -135,6 +140,10 @@ button.big {
 button:hover {
 	background: #e6a10d;
 	box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
+}
+
+button.ghost:hover {
+	background: var(--cover-color);
 }
 
 button:active {
