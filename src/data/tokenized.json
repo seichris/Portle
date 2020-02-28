@@ -37,10 +37,18 @@
 		"azrx",
 		"ydai",
 		"yusdc",
-		"yusdt",
 		"ysusd",
-		"ytusd",
-		"ybusd",
-		"ywtbc"
+		"yusdt",
+		"ywbtc",
+		"ydai_2",
+		"yusdc_2",
+		"yusdt_2",
+		"ysusd_2",
+		"ytusd_2",
+		"ywbtc_2",
+		"ydai_3",
+		"yusdc_3",
+		"yusdt_3",
+		"ybusd_3"
 	]
 }
