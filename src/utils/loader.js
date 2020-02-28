@@ -136,6 +136,7 @@ class Loader {
 			this.loadMelon(addresses),
 			this.loadTokenSets(addresses),
 			this.loadUniswap(addresses),
+			this.loadCurve(addresses),
 		];
 		const investmentData = await Promise.all(promises);
 
@@ -144,11 +145,13 @@ class Loader {
 			investments[i].melon = investmentData[0].investments[i];
 			investments[i].tokensets = investmentData[1].investments[i];
 			investments[i].uniswap = investmentData[2].investments[i];
+			investments[i].curve = investmentData[3].investments[i];
 		}
 
 		components.melon = investmentData[0].components;
 		components.tokensets = investmentData[1].components;
 		components.uniswap = investmentData[2].components;
+		components.curve = investmentData[3].components;
 
 		return {
 			investments,
@@ -607,6 +610,57 @@ class Loader {
 		};
 	}
 
+	static async loadCurve(addresses) {
+		const investments = addresses.map(() => {
+			return {};
+		});
+		const components = {};
+		const addressCount = addresses.length;
+
+		const data = await fetchCurve(addresses);
+		for (let i = 0; i < addressCount; i++) {
+			const address = addresses[i];
+			const walletBalance = data[`user_${address}`];
+			if (!walletBalance) {
+				continue;
+			}
+			const pools = walletBalance.pools;
+			for (const pool of pools) {
+				const assets = pool.pool.assets;
+				const tokenAmounts = pool.pool.amounts;
+
+				const assetIds = assets.map(asset => getAssetId(asset));
+				const id = assetIds.join('-');
+
+				const totalPoolTokenAmountNumber = Converter.toAmount(pool.pool.totalAmount, 'eth');
+				const tokenAmountNumbers = tokenAmounts
+					.map(tokenAmount => new BigNumber(tokenAmount));
+				const tokenPerPoolTokenNumbers = tokenAmountNumbers
+					.map(tokenAmountNumber => tokenAmountNumber.div(totalPoolTokenAmountNumber));
+
+				const componentCount = assets.length;
+				const investmentComponents = [];
+				for (let i = 0; i < componentCount; i++) {
+					const assetId = assetIds[i];
+					const balance = tokenPerPoolTokenNumbers[i].toString();
+					const amount = Converter.toAmount(balance, assetId);
+					investmentComponents.push({
+						assetId,
+						amount,
+					});
+				}
+
+				investments[i][id] = pool.amount;
+				components[id] = investmentComponents;
+			}
+		}
+
+		return {
+			investments,
+			components,
+		};
+	}
+
 	static async loadZeroEx(addresses) {
 		const stakes = addresses.map(() => {
 			return {};
@@ -953,6 +1007,37 @@ async function fetchUniswap(addresses) {
 						totalUniToken
 						ethBalance
 						tokenBalance
+					}
+				}
+			}
+		`;})
+		.join('');
+	const query = `
+		query {
+			${addressQuery}
+		}`;
+	const opts = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ query }),
+	};
+	const response = await fetch(url, opts);
+	const json = await response.json();
+	const data = json.data;
+	return data;
+}
+
+async function fetchCurve(addresses) {
+	const url = 'https://api.thegraph.com/subgraphs/name/destiner/curve';
+	const addressQuery = addresses
+		.map(address => { return `
+			user_${address}: user(id: "${address}") {
+				pools {
+					amount
+					pool {
+						assets
+						amounts
+						totalAmount
 					}
 				}
 			}
