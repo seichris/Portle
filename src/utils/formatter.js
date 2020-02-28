@@ -24,6 +24,7 @@ class Formatter {
 		const protocolMap = {
 			'aave': 'Aave',
 			'compound': 'Compound',
+			'curve': 'Curve',
 			'dydx': 'dYdX',
 			'fulcrum': 'Fulcrum',
 			'hydro': 'DDEX',
@@ -176,6 +177,16 @@ class Formatter {
 		};
 		const sets = {...roboSets, ...socialSets};
 		return sets[setId];
+	}
+
+	static formatCurvePool(poolId) {
+		const poolMap = {
+			'cdai-cusdc': 'Compounded',
+			'cdai-cusdc-usdt': 'Tethered',
+			'ydai_2-yusdc_2-yusdt_2-ytusd_2': 'Yield (TUSD)',
+			'ydai_3-yusdc_3-yusdt_3-ybusd_3': 'Yield (BUSD)',
+		};
+		return poolMap[poolId];
 	}
 
 	static formatPool(assetId, poolId) {
