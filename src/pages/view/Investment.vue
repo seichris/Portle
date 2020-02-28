@@ -224,6 +224,9 @@ export default {
 			if (investment.protocolId == 'melon') {
 				return 'shares';
 			}
+			if (investment.protocolId == 'curve') {
+				return 'tokens';
+			}
 			return investment.id;
 		},
 		formatInvestmentName(investment) {
@@ -233,6 +236,9 @@ export default {
 			}
 			if (investment.protocolId == 'tokensets') {
 				return Formatter.formatSetName(investment.id);
+			}
+			if (investment.protocolId == 'curve') {
+				return Formatter.formatCurvePool(investment.id);
 			}
 			return investment.id;
 		},
