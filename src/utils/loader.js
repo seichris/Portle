@@ -565,6 +565,12 @@ class Loader {
 		const addressCount = addresses.length;
 
 		const data = await fetchUniswap(addresses);
+		if (!data) {
+			return {
+				investments,
+				components,
+			};
+		}
 		for (let i = 0; i < addressCount; i++) {
 			const address = addresses[i];
 			const walletBalance = data[`user_${address}`];
