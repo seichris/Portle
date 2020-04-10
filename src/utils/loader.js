@@ -824,7 +824,7 @@ async function fetchAave(addresses) {
 }
 
 async function fetchCompound(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/compound';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/compound';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
@@ -857,7 +857,7 @@ async function fetchCompound(addresses) {
 }
 
 async function fetchDydx(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/dydx';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/dydx';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
@@ -898,7 +898,7 @@ async function fetchDydx(addresses) {
 }
 
 async function fetchFulcrum(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/fulcrum';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/fulcrum';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
@@ -932,7 +932,7 @@ async function fetchFulcrum(addresses) {
 }
 
 async function fetchHydro(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/hydro';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/hydro';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
@@ -965,7 +965,7 @@ async function fetchHydro(addresses) {
 }
 
 async function fetchMaker(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/maker';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/maker';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
@@ -1034,7 +1034,7 @@ async function fetchUniswap(addresses) {
 }
 
 async function fetchCurve(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/curve';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/curve';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
@@ -1065,7 +1065,7 @@ async function fetchCurve(addresses) {
 }
 
 async function fetchTokenSets(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/token-sets';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/tokensets';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
@@ -1141,7 +1141,7 @@ async function fetchMelon(addresses) {
 }
 
 async function fetchZeroEx(addresses) {
-	const url = 'https://api.thegraph.com/subgraphs/name/destiner/zeroex-staking';
+	const url = 'https://api.thegraph.com/subgraphs/name/graphitetools/zeroex';
 	const addressQuery = addresses
 		.map(address => { return `
 			user_${address}: user(id: "${address}") {
