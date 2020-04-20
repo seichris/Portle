@@ -436,16 +436,12 @@ class Loader {
 				continue;
 			}
 			const rawBalance = user.balance;
-			const rawChaiBalance = user.chaiBalance;
 			const rawProxyBalance = user.proxy
 				? user.proxy.balance
 				: 0;
 			const rawBalanceNumber = new BigNumber(rawBalance);
-			const rawChaiBalanceNumber = new BigNumber(rawChaiBalance);
 			const rawProxyBalanceNumber = new BigNumber(rawProxyBalance);
-			const rawTotalBalanceNumber = rawBalanceNumber
-				.plus(rawChaiBalanceNumber)
-				.plus(rawProxyBalanceNumber);
+			const rawTotalBalanceNumber = rawBalanceNumber.plus(rawProxyBalanceNumber);
 			const totalBalanceNumber = rawTotalBalanceNumber.times(index).div('1e27');
 			const totalBalance = totalBalanceNumber.toString();
 			deposits[i]['dai'] = totalBalance;
@@ -971,7 +967,6 @@ async function fetchMaker(addresses) {
 			user_${address}: user(id: "${address}") {
 				id
 				balance
-				chaiBalance
 				proxy {
 					id
 					balance
